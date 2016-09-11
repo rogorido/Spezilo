@@ -18,7 +18,7 @@ public class MainSpezilo extends AppCompatActivity {
 
     Spinner monthspinner;
     TextView lblspendings;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
