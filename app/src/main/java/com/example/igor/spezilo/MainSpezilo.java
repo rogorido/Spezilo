@@ -11,8 +11,13 @@ import android.view.MenuItem;
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.TextView;
 
 public class MainSpezilo extends AppCompatActivity {
+
+    Spinner monthspinner;
+    TextView lblspendings;
 
     static final String[] Months = new String[] { "Enero", "Febrero",
             "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
@@ -34,13 +39,17 @@ public class MainSpezilo extends AppCompatActivity {
             }
         });
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        monthspinner = (Spinner) findViewById(R.id.cmbMonths);
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.months_array,
                         android.R.layout.simple_spinner_item);
-        spinner.setAdapter(adapter);
-        
+        monthspinner.setAdapter(adapter);
+
+        lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
+
+        connectWidgets();
+
     }
 
     @Override
@@ -63,5 +72,21 @@ public class MainSpezilo extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void connectWidgets() {
+
+        monthspinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
+                        lblspendings.setText("Seleccionado: " + parent.getItemAtPosition(pos));
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        lblspendings.setText("Nada seleccionado");
+                    }
+                }
+        );
+
     }
 }
