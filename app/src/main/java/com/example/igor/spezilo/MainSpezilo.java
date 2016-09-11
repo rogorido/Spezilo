@@ -35,10 +35,12 @@ public class MainSpezilo extends AppCompatActivity {
         });
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, Months);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(this,
+                        R.array.months_array,
+                        android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
+        
     }
 
     @Override
