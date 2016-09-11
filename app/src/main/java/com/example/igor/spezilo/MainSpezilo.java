@@ -13,11 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
+
+import android.util.Log;
 
 public class MainSpezilo extends AppCompatActivity {
 
     Spinner monthspinner;
     TextView lblspendings;
+    PurchaseSQLiteHelper dbh;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,8 @@ public class MainSpezilo extends AppCompatActivity {
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
         connectWidgets();
+        rellenarBD();
+        mostrarDatos();
 
     }
 
@@ -83,6 +91,52 @@ public class MainSpezilo extends AppCompatActivity {
                     }
                 }
         );
+
+    }
+
+    private void rellenarBD() {
+
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+
+        db = dbh.getWritableDatabase();
+
+        //Si hemos abierto correctamente la base de datos
+        if(db != null)
+        {
+            //Insertamos 5 usuarios de ejemplo
+            for(int i=1; i<=5; i++)
+            {
+                //Generamos los datos
+                String person = "Usuario" + i;
+                double cantidad = i / 28;
+                String lugar = "lugar" + i;
+                String descripcion = "descp" + i;
+                String fecha = "fecha" + i;
+                int exportado = i;
+
+                //Insertamos los datos en la tabla Usuarios
+                db.execSQL("INSERT INTO purchases (amount, person, place, description, date, exported) " +
+                        "VALUES (" + cantidad + ", '" + person + "', '" + lugar + "', '" + descripcion + "', '" + fecha + "', " + exportado + ")");
+            }
+
+            //Cerramos la base de datos
+            db.close();
+        }
+    }
+
+    private void mostrarDatos() {
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+
+        db = dbh.getWritableDatabase();
+
+        String sqlC = "SELECT * from purchases";
+
+        Cursor c = db.rawQuery(sqlC, null);
+
+        String total = "Total es: " + c.getCount();
+
+        Log.i("Mostrar", total);
+
 
     }
 }
