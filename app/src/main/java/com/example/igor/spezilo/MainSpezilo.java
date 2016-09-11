@@ -50,6 +50,8 @@ public class MainSpezilo extends AppCompatActivity {
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+
         connectWidgets();
         rellenarBD();
         mostrarDatos();
@@ -61,21 +63,6 @@ public class MainSpezilo extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_spezilo, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     void connectWidgets() {
@@ -95,8 +82,6 @@ public class MainSpezilo extends AppCompatActivity {
     }
 
     private void rellenarBD() {
-
-        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
 
         db = dbh.getWritableDatabase();
 
@@ -125,8 +110,6 @@ public class MainSpezilo extends AppCompatActivity {
     }
 
     private void mostrarDatos() {
-        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
-
         db = dbh.getWritableDatabase();
 
         String sqlC = "SELECT * from purchases";
@@ -137,6 +120,39 @@ public class MainSpezilo extends AppCompatActivity {
 
         Log.i("Mostrar", total);
 
+        db.close();
+
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Log.i("ActionBar", "Settings!");
+                return true;
+            case R.id.action_delete_db:
+                Log.i("ActionBar", "Borrar db!");
+                deleteDB();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void deleteDB() {
+        db = dbh.getWritableDatabase();
+
+        if (db!=null) {
+
+            String sqlSentence = "DELETE FROM purchases";
+            db.execSQL(sqlSentence);
+            mostrarDatos();
+
+        }
+
+        db.close();
+    }
+
+
 }
