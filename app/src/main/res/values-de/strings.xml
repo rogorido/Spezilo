@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Spezilo</string>
     <string name="no_gastos">Keine Ausgaben</string>
+    <string name="action_delete_db">DB löschen</string>
 </resources>
