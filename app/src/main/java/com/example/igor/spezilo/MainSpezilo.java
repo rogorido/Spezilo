@@ -18,11 +18,7 @@ public class MainSpezilo extends AppCompatActivity {
 
     Spinner monthspinner;
     TextView lblspendings;
-
-    static final String[] Months = new String[] { "Enero", "Febrero",
-            "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-            "Octubre", "Noviembre", "Diciembre" };
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
