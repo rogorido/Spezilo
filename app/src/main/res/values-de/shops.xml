@@ -4,9 +4,9 @@
         <item>Aldi</item>
         <item>Rewe</item>
         <item>DM</item>
-        <item>Carnicería</item>
-        <item>Panadería</item>
-        <item>Turco</item>
-        <item>Otros</item>
+        <item>Metzger</item>
+        <item>Bäckerei</item>
+        <item>Türke</item>
+        <item>Andere</item>
     </string-array>
 </resources>
