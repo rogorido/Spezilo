@@ -81,34 +81,6 @@ public class MainSpezilo extends AppCompatActivity {
 
     }
 
-    private void rellenarBD() {
-
-        db = dbh.getWritableDatabase();
-
-        //Si hemos abierto correctamente la base de datos
-        if(db != null)
-        {
-            //Insertamos 5 usuarios de ejemplo
-            for(int i=1; i<=5; i++)
-            {
-                //Generamos los datos
-                String person = "Usuario" + i;
-                double cantidad = i / 28;
-                String lugar = "lugar" + i;
-                String descripcion = "descp" + i;
-                String fecha = "fecha" + i;
-                int exportado = i;
-
-                //Insertamos los datos en la tabla Usuarios
-                db.execSQL("INSERT INTO purchases (amount, person, place, description, date, exported) " +
-                        "VALUES (" + cantidad + ", '" + person + "', '" + lugar + "', '" + descripcion + "', '" + fecha + "', " + exportado + ")");
-            }
-
-            //Cerramos la base de datos
-            db.close();
-        }
-    }
-
     private void mostrarDatos() {
         db = dbh.getWritableDatabase();
 
