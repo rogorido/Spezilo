@@ -104,26 +104,10 @@ public class MainSpezilo extends AppCompatActivity {
                 return true;
             case R.id.action_delete_db:
                 Log.i("ActionBar", "Borrar db!");
-                deleteDB();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    private void deleteDB() {
-        db = dbh.getWritableDatabase();
-
-        if (db!=null) {
-
-            String sqlSentence = "DELETE FROM purchases";
-            db.execSQL(sqlSentence);
-            mostrarDatos();
-
-        }
-
-        db.close();
-    }
-
 
 }
