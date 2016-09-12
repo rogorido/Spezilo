@@ -17,6 +17,8 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+        
         btnDelete = (Button) findViewById(R.id.btnDeleteDB);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {

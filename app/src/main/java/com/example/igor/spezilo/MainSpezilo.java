@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
+import android.content.Intent;
+
 import android.util.Log;
 
 public class MainSpezilo extends AppCompatActivity {
@@ -100,10 +102,13 @@ public class MainSpezilo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Log.i("ActionBar", "Settings!");
+                Log.i("ActionBar", "Abrienod Settings!");
+                Intent intent = new Intent(MainSpezilo.this, Settings.class);
+                startActivity(intent);
+                mostrarDatos();
                 return true;
             case R.id.action_delete_db:
-                Log.i("ActionBar", "Borrar db!");
+                Log.i("ActionBar", "Abrir activity!");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
