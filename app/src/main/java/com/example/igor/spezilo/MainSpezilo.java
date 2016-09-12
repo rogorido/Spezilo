@@ -53,7 +53,6 @@ public class MainSpezilo extends AppCompatActivity {
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
 
         connectWidgets();
-        rellenarBD();
         mostrarDatos();
 
     }
