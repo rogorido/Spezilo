@@ -18,7 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings" />
+        <activity
+            android:name=".Purchase"
+            android:label="@string/title_activity_purchase"
+            android:parentActivityName=".MainSpezilo"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.igor.spezilo.MainSpezilo" />
+        </activity>
     </application>
 
 </manifest>
