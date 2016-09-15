@@ -12,4 +12,41 @@
     tools:context="com.example.igor.spezilo.Purchase"
     tools:showIn="@layout/activity_purchase">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAmount"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cboPayee"
+        android:layout_below="@+id/txtAmount"
+        android:layout_toStartOf="@+id/txtAmount" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cboPlace"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/cboPayee"
+        android:layout_alignStart="@+id/cboPayee" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_below="@+id/cboPlace"
+        android:layout_alignEnd="@+id/cboPlace"
+        android:layout_marginTop="47dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_below="@+id/datePicker"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="61dp" />
 </RelativeLayout>
