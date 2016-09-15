@@ -12,41 +12,66 @@
     tools:context="com.example.igor.spezilo.Purchase"
     tools:showIn="@layout/activity_purchase">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtAmount"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cboPayee"
-        android:layout_below="@+id/txtAmount"
-        android:layout_toStartOf="@+id/txtAmount" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cboPlace"
-        android:layout_marginTop="52dp"
-        android:layout_below="@+id/cboPayee"
-        android:layout_alignStart="@+id/cboPayee" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/lblAmount"
+                android:text="@string/lblAmount"/>
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_below="@+id/cboPlace"
-        android:layout_alignEnd="@+id/cboPlace"
-        android:layout_marginTop="47dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtAmount"
+                android:inputType="numberDecimal"
+                android:textAlignment="textEnd"/>
 
-    <TimePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_below="@+id/datePicker"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="61dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblPerson"
+                android:text="@string/person_paying"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cboPerson"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblPlace"
+                android:text="@string/place_shop"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cboShop"/>
+
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dtDatePicker"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"/>
+
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dtTimePicker"
+                android:timePickerMode="spinner"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </RelativeLayout>

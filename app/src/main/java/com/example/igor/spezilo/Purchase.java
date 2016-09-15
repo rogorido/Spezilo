@@ -10,7 +10,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.TimePicker;
+
 public class Purchase extends AppCompatActivity {
+
+    static final String[] Persons = new String[] { "Nathalie Wergles", "Igor Sosa Mayor"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +25,22 @@ public class Purchase extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final Spinner spinnerPerson = (Spinner) findViewById(R.id.cboPerson);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, Persons);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPerson.setAdapter(adapter);
+
+        final Spinner spShop = (Spinner) findViewById(R.id.cboShop);
+        ArrayAdapter<String> shopAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.shops_array));
+        shopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spShop.setAdapter(shopAdapter);
+
+        TimePicker timePicker = (TimePicker) findViewById(R.id.dtTimePicker);
+        timePicker.setIs24HourView(true);
     }
 
     @Override
