@@ -7,4 +7,5 @@
     <string name="lblAmount">Total gastado: </string>
     <string name="person_paying">Persona</string>
     <string name="place_shop">Tienda</string>
+    <string name="category_purchase">Categoría</string>
 </resources>
