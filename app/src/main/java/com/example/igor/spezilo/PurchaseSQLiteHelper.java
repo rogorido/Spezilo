@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PurchaseSQLiteHelper extends SQLiteOpenHelper {
 
     String sqlSentence = "CREATE TABLE purchases (_id INTEGER PRIMARY KEY, amount REAL, person " +
-            "TEXT, place TEXT, description TEXT, date TEXT, exported INTEGER)";
+            "TEXT, category TEXT, place TEXT, description TEXT, date TEXT, exported INTEGER)";
 
     public PurchaseSQLiteHelper(Context context, String name, CursorFactory cf, int version) {
         super(context, name, cf, version);
@@ -31,9 +31,9 @@ public class PurchaseSQLiteHelper extends SQLiteOpenHelper {
         //      ser más elaborado.
 
         //Se elimina la versión anterior de la tabla
-        //db.execSQL("DROP TABLE IF EXISTS Usuarios");
+        //db.execSQL("DROP TABLE IF EXISTS DBPurchases");
 
         //Se crea la nueva versión de la tabla
-        //db.execSQL(sqlCreate);
+        //db.execSQL(sqlSentence);
     }
 }
