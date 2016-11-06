@@ -14,9 +14,14 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TimePicker;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.content.ContentValues;
+
 public class Purchase extends AppCompatActivity {
 
     static final String[] Persons = new String[] { "Nathalie Wergles", "Igor Sosa Mayor"};
+    PurchaseSQLiteHelper dbh;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class Purchase extends AppCompatActivity {
 
         TimePicker timePicker = (TimePicker) findViewById(R.id.dtTimePicker);
         timePicker.setIs24HourView(true);
+
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
     }
 
     @Override
@@ -63,5 +70,30 @@ public class Purchase extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public long savePurchase() {
+        SQLiteDatabase db = dbh.getWritableDatabase();
+
+        return db.insert(
+                "purchases",
+                null,
+                toValues());
+
+    }
+
+    public ContentValues toValues () {
+        ContentValues values = new ContentValues();
+
+        String valor = 
+
+        values.put("amount", valor);
+        values.put("person", persona);
+        values.put("category", categoria);
+        values.put("place", lugar);
+        values.put("description", descripcion);
+        values.put("date", fecha);
+        values.put("exported", 0);
+
     }
 }
