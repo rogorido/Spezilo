@@ -13,7 +13,6 @@ import android.view.MenuItem;
 
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-import android.widget.TimePicker;
 import android.widget.DatePicker;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -33,7 +32,6 @@ public class Purchase extends AppCompatActivity {
     Spinner spinnerPerson;
     Spinner spCategory;
     Spinner spShop;
-    TimePicker timePicker;
     DatePicker datePicker;
     TextView txtAmount;
 
@@ -68,12 +66,7 @@ public class Purchase extends AppCompatActivity {
 
         datePicker = (DatePicker) findViewById(R.id.dtDatePicker);
 
-        timePicker = (TimePicker) findViewById(R.id.dtTimePicker);
-        timePicker.setIs24HourView(true);
-
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
-
-
     }
 
     @Override

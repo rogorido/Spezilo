@@ -74,13 +74,6 @@
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"/>
 
-            <TimePicker
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/dtTimePicker"
-                android:timePickerMode="spinner"
-                />
-
         </LinearLayout>
     </ScrollView>
 
