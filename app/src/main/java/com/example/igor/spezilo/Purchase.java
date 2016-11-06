@@ -107,12 +107,21 @@ public class Purchase extends AppCompatActivity {
         String lugar = spShop.getSelectedItem().toString();
         String descripcion = txtDescription.getText().toString();
 
+        /*
+        Atención: realmente lo de Date está deprecado y hay que usar no sé que de
+        Calendar. Además no sé por qué añade 1900. Ver la ayuda.
+         */
         int   day  = datePicker.getDayOfMonth();
         int   month= datePicker.getMonth();
-        int   year = datePicker.getYear();
+        int   year = datePicker.getYear()-1900;
+
+        String ano = String.valueOf(year);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = sdf.format(new Date(year, month, day));
+
+        Log.i("Año es: ", ano);
+        Log.i("Fecha es: ", fecha);
 
         values.put("amount", valor);
         values.put("person", persona);
