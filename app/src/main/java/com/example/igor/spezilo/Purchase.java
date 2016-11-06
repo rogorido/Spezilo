@@ -34,6 +34,7 @@ public class Purchase extends AppCompatActivity {
     Spinner spShop;
     DatePicker datePicker;
     TextView txtAmount;
+    TextView txtDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class Purchase extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txtAmount = (TextView) findViewById(R.id.txtAmount);
+        txtDescription = (TextView) findViewById(R.id.txtDescription);
 
         spinnerPerson = (Spinner) findViewById(R.id.cboPerson);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -103,7 +105,7 @@ public class Purchase extends AppCompatActivity {
         String persona = spinnerPerson.getSelectedItem().toString();
         String categoria = spCategory.getSelectedItem().toString();
         String lugar = spShop.getSelectedItem().toString();
-        String descripcion = "nada";
+        String descripcion = txtDescription.getText().toString();
 
         int   day  = datePicker.getDayOfMonth();
         int   month= datePicker.getMonth();
