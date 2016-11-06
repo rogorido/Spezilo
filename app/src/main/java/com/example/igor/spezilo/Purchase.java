@@ -65,8 +65,6 @@ public class Purchase extends AppCompatActivity {
         spShop.setAdapter(shopAdapter);
 
         datePicker = (DatePicker) findViewById(R.id.dtDatePicker);
-
-        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
     }
 
     @Override
@@ -113,10 +111,6 @@ public class Purchase extends AppCompatActivity {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String fecha = sdf.format(new Date(year, month, day));
-
-        Log.i("Valor:", valor);
-        Log.i("Persona:", persona);
-        Log.i("Fecha", fecha);
 
         values.put("amount", valor);
         values.put("person", persona);
