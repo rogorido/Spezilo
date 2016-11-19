@@ -26,6 +26,7 @@ public class MainSpezilo extends AppCompatActivity {
     TextView lblspendings;
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
+    String totalAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +55,8 @@ public class MainSpezilo extends AppCompatActivity {
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
-        connectWidgets();
+     //   connectWidgets(); esto lo dejo para verlo, pero ahora no hace falta
         mostrarDatos();
-
     }
 
     @Override
@@ -86,12 +86,24 @@ public class MainSpezilo extends AppCompatActivity {
         db = dbh.getWritableDatabase();
 
         String sqlC = "SELECT * from purchases";
+        String sqlTotal = "SELECT sum(amount) as TOTAL from purchases";
 
         Cursor c = db.rawQuery(sqlC, null);
+        Cursor ctotal = db.rawQuery(sqlTotal, null);
 
         String total = "Total es: " + c.getCount();
+        String totalAusgabe = "";
+
+        if (ctotal.moveToFirst()){
+            totalAusgabe = "Total gastado: " + ctotal.getString(ctotal.getColumnIndex("TOTAL"));}
+        //double totalAusgabe = ctotal.getDouble(0);
 
         Log.i("Mostrar", total);
+
+        lblspendings.setText(totalAusgabe);
+
+        c.close();
+        ctotal.close();
 
         db.close();
 
