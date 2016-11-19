@@ -38,8 +38,8 @@ public class MainSpezilo extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainSpezilo.this, Purchase.class);
+                startActivity(intent);
             }
         });
 
@@ -52,7 +52,7 @@ public class MainSpezilo extends AppCompatActivity {
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
-        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
         connectWidgets();
         mostrarDatos();
@@ -102,7 +102,7 @@ public class MainSpezilo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Log.i("ActionBar", "Abrienod Settings!");
+                Log.i("ActionBar", "Abriendo Settings!");
                 Intent intent = new Intent(MainSpezilo.this, Settings.class);
                 startActivity(intent);
                 mostrarDatos();
