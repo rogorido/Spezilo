@@ -26,7 +26,7 @@ public class MainSpezilo extends AppCompatActivity {
     TextView lblspendings;
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
-    String totalAmount;
+    String MonthSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class MainSpezilo extends AppCompatActivity {
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
-     //   connectWidgets(); esto lo dejo para verlo, pero ahora no hace falta
+        connectWidgets(); //esto lo dejo para verlo, pero ahora no hace falta
         mostrarDatos();
     }
 
@@ -71,7 +71,8 @@ public class MainSpezilo extends AppCompatActivity {
         monthspinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
-                        lblspendings.setText("Seleccionado: " + parent.getItemAtPosition(pos));
+                        MonthSelected = String.valueOf(pos+1);
+                        Log.i("Escogido: ", MonthSelected);
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
