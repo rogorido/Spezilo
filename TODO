@@ -2,7 +2,31 @@ TODOs
 
 + mejorar la calidad estética
 + que se cierra purchasing al hacer OK
+<<<<<<< HEAD
 + poner en la pantalla principal un resumen total
 + una activity con la lista de lo del mes
 
 
+=======
++ añadir en activity purchasing un toast de que se ha grabado 
+  bien el registro
++ una activity con la lista de lo del mes
+  + con posibilidad de borrar!
++ que la activity inicial escoja ya directamnet el mes en el que estamos al
+abrirse. 
+
+
+notas:
++ lo del listview se hace con un CursorAdapter que es lo mejor cuando se usa un
+Cursor de sqlite
++ tvz se podría hacer una clase que guarde los datos de un mes.
+  + luego con un método getAmount devuelve el total: pero hay que tener en
+  cuenta que lo que habría que guardar en la claes es el 1er día y el último
+  del mes para poder hacer una consulta con sum()...
+  + podría devolver un Cursor para usarlo en la listview de la activity que
+  tenga la lista de las compras del mes
+
+Hecho:
++ poner en la pantalla principal un resumen total
++ 
+>>>>>>> listageneral
