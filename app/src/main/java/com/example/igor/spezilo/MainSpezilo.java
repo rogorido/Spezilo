@@ -120,7 +120,7 @@ public class MainSpezilo extends AppCompatActivity {
         String totalAusgabe = "";
 
         if (ctotal.moveToFirst()){
-            totalAusgabe = "Total gastado: " + ctotal.getString(ctotal.getColumnIndex("TOTAL"));}
+            totalAusgabe = "Total gastado: " + ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " €";}
         //double totalAusgabe = ctotal.getDouble(0);
 
         Log.i("Mostrar", total);
