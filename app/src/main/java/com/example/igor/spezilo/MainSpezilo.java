@@ -23,10 +23,14 @@ import android.util.Log;
 public class MainSpezilo extends AppCompatActivity {
 
     Spinner monthspinner;
+    Spinner yearspinner;
     TextView lblspendings;
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
     String MonthSelected;
+    String YearSelected;
+
+    String[] years = { "2016", "2017", "2018", "2019", "2020"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,11 @@ public class MainSpezilo extends AppCompatActivity {
                         android.R.layout.simple_spinner_item);
         monthspinner.setAdapter(adapter);
 
+        yearspinner = (Spinner) findViewById(R.id.cmbYears);
+        ArrayAdapter<String> adapteryears = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, years);
+        yearspinner.setAdapter(adapteryears);
+
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
@@ -73,6 +82,19 @@ public class MainSpezilo extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
                         MonthSelected = String.valueOf(pos+1);
                         Log.i("Escogido: ", MonthSelected);
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        lblspendings.setText("Nada seleccionado");
+                    }
+                }
+        );
+
+        yearspinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
+                        YearSelected = parent.getItemAtPosition(pos).toString();
+                        Log.i("Año escogido: ", YearSelected);
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
