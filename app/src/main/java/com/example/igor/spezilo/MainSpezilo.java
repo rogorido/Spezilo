@@ -52,12 +52,14 @@ public class MainSpezilo extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.months_array,
-                        android.R.layout.simple_spinner_item);
+                        R.layout.spinner_layout);
         monthspinner.setAdapter(adapter);
 
         yearspinner = (Spinner) findViewById(R.id.cmbYears);
+        //ArrayAdapter<String> adapteryears = new ArrayAdapter<String>(this,
+        //        android.R.layout.simple_spinner_dropdown_item, years);
         ArrayAdapter<String> adapteryears = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, years);
+                R.layout.spinner_layout, years);
         yearspinner.setAdapter(adapteryears);
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
