@@ -2,7 +2,6 @@ package com.example.igor.spezilo;
 
 import android.content.Context;
 import android.database.Cursor;
-//import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,9 @@ public class CategoriesAdapter extends CursorAdapter {
         super(context, cursor, 0);
     }
 
+    /*
+    uso el layout de categories_item por no hacer otro...
+     */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.categories_item, parent, false);
@@ -28,7 +30,7 @@ public class CategoriesAdapter extends CursorAdapter {
 
         // Extract properties from cursor
         String category = cursor.getString(cursor.getColumnIndex("category"));
-        int amount = cursor.getInt(cursor.getColumnIndex("TOTAL"));
+        double amount = cursor.getDouble(cursor.getColumnIndex("TOTAL"));
 
         // Populate fields with extracted properties
         tvCategory.setText(category);

@@ -27,6 +27,7 @@ public class MainSpezilo extends AppCompatActivity {
     Spinner yearspinner;
     TextView lblspendings;
     ListView lvCategories;
+    ListView lvShops;
 
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
@@ -64,6 +65,7 @@ public class MainSpezilo extends AppCompatActivity {
         yearspinner.setAdapter(adapteryears);
 
         lvCategories = (ListView) findViewById(R.id.lv_categories);
+        lvShops = (ListView) findViewById(R.id.lv_shops);
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
@@ -140,14 +142,17 @@ public class MainSpezilo extends AppCompatActivity {
     private void fillGridCategories() {
         db = dbh.getWritableDatabase();
 
-        String sqlCagetories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+        Cursor ctotal = db.rawQuery(sqlCategories, null);
+        String sqlShops = "SELECT _id, place, sum(amount) as TOTAL from purchases GROUP BY place ORDER BY TOTAL DESC";
+        Cursor shopstotal = db.rawQuery(sqlShops, null);
 
-        Cursor ctotal = db.rawQuery(sqlCagetories, null);
-        
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
-
         lvCategories.setAdapter(adaptador);
 
+        ShopsAdapter shopsadaptador = new ShopsAdapter(this, shopstotal);
+        lvShops.setAdapter(shopsadaptador);
+        
         //ctotal.close();
 
         //db.close();
