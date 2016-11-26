@@ -152,10 +152,13 @@ public class MainSpezilo extends AppCompatActivity {
 
         ShopsAdapter shopsadaptador = new ShopsAdapter(this, shopstotal);
         lvShops.setAdapter(shopsadaptador);
-        
-        //ctotal.close();
 
-        //db.close();
+        /*
+        si cierro estos, se me crashea la aplicación...
+        ctotal.close();
+
+        db.close();
+         */
 
     }
 
