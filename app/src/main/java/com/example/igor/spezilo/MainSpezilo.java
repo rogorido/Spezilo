@@ -143,10 +143,7 @@ public class MainSpezilo extends AppCompatActivity {
         String sqlCagetories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
 
         Cursor ctotal = db.rawQuery(sqlCagetories, null);
-
-        String total = "Total de categorías: " + ctotal.getCount();
-        Log.i("Purchase", total);
-
+        
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
 
         lvCategories.setAdapter(adaptador);
