@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.ListView;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
@@ -25,6 +26,8 @@ public class MainSpezilo extends AppCompatActivity {
     Spinner monthspinner;
     Spinner yearspinner;
     TextView lblspendings;
+    ListView lvCategories;
+
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
     String MonthSelected;
@@ -56,16 +59,17 @@ public class MainSpezilo extends AppCompatActivity {
         monthspinner.setAdapter(adapter);
 
         yearspinner = (Spinner) findViewById(R.id.cmbYears);
-        //ArrayAdapter<String> adapteryears = new ArrayAdapter<String>(this,
-        //        android.R.layout.simple_spinner_dropdown_item, years);
         ArrayAdapter<String> adapteryears = new ArrayAdapter<String>(this,
                 R.layout.spinner_layout, years);
         yearspinner.setAdapter(adapteryears);
+
+        lvCategories = (ListView) findViewById(R.id.lv_categories);
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
+        fillGridCategories();
         connectWidgets(); //esto lo dejo para verlo, pero ahora no hace falta
         mostrarDatos();
     }
@@ -131,7 +135,25 @@ public class MainSpezilo extends AppCompatActivity {
         ctotal.close();
 
         db.close();
+    }
 
+    private void fillGridCategories() {
+        db = dbh.getWritableDatabase();
+
+        String sqlCagetories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+
+        Cursor ctotal = db.rawQuery(sqlCagetories, null);
+
+        String total = "Total de categorías: " + ctotal.getCount();
+        Log.i("Purchase", total);
+
+        CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
+
+        lvCategories.setAdapter(adaptador);
+
+        //ctotal.close();
+
+        //db.close();
 
     }
 

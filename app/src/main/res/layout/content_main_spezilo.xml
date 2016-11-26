@@ -29,4 +29,11 @@
         android:text="@string/no_gastos"
         android:id="@+id/lblTotalSpendings"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <ListView
+		android:id="@+id/lv_categories"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+    </ListView>
+
 </LinearLayout>
