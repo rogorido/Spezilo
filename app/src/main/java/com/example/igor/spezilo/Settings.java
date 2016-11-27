@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.Button;
 
+import android.util.Log;
+
 public class Settings extends AppCompatActivity {
 
     PurchaseSQLiteHelper dbh;
@@ -17,12 +19,13 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 1);
+        dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
         
         btnDelete = (Button) findViewById(R.id.btnDeleteDB);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
+                Log.i("spezilo", "estamos aquíantes de borrar...");
                 deleteDB();
             }
         });
@@ -33,7 +36,9 @@ public class Settings extends AppCompatActivity {
 
         if (db!=null) {
 
-            db.delete("purchases", null, null)
+            Log.i("spezilo", "estamos aquí...");
+
+            db.delete("purchases", null, null);
 
                     /*
             String sqlSentence = "DELETE FROM purchases";
