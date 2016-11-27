@@ -34,6 +34,8 @@ public class MainSpezilo extends AppCompatActivity {
     String MonthSelected;
     String YearSelected;
 
+    MonthData datosmes;
+
     String[] years = { "2016", "2017", "2018", "2019", "2020"};
 
     @Override
@@ -71,8 +73,15 @@ public class MainSpezilo extends AppCompatActivity {
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
+        /*
+         lo cargamos con estos datos inicialmente; luego se cambia en connectWidgets
+         pero esto habría que hacerlo mejor
+          */
+        datosmes = new MonthData(10, 2016, this);
+
         fillGridCategories();
         connectWidgets(); //esto lo dejo para verlo, pero ahora no hace falta
+        updateCursorMonth();
         mostrarDatos();
     }
 
@@ -139,7 +148,10 @@ public class MainSpezilo extends AppCompatActivity {
         db.close();
     }
 
-    private void fillGridCategories() {
+    private void fillGridCategoriesANTIGUO() {
+        /*
+        esto es antiguo; ahora uso la clase MonthData
+         */
         db = dbh.getWritableDatabase();
 
         String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
@@ -159,6 +171,25 @@ public class MainSpezilo extends AppCompatActivity {
 
         db.close();
          */
+
+    }
+
+    private void fillGridCategories() {
+        Cursor ctotal;
+        Cursor stotal;
+
+        ctotal = datosmes.getCategoriesList();
+        stotal = datosmes.getShopsList();
+
+        CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
+        lvCategories.setAdapter(adaptador);
+
+        ShopsAdapter shopsadaptador = new ShopsAdapter(this, stotal);
+        lvShops.setAdapter(shopsadaptador);
+
+    }
+
+    private void updateCursorMonth() {
 
     }
 

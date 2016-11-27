@@ -117,7 +117,7 @@ public class Purchase extends AppCompatActivity {
 
         String ano = String.valueOf(year);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(new Date(year, month, day));
 
         Log.i("Año es: ", ano);
