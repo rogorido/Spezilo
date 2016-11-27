@@ -30,20 +30,25 @@ public class MonthData {
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
-        mMonth = createandupdateCursor();
+        mMonth = createandupdateCursor(imonth, iyear);
 
     }
 
-    private Cursor createandupdateCursor(int month, int year) {
+    public Cursor createandupdateCursor(int month, int year) {
 
         imonth = month;
         iyear = year;
 
+        cal.set(iyear, imonth, 1);
         createDateStrings();
 
         db = dbh.getReadableDatabase();
 
-        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+        String sqlGeneral = "SELECT _id, category, sum(amount) as TOTAL from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " GROUP BY category ORDER BY TOTAL DESC";
+
+        mMonth = db.rawQuery(sqlGeneral, null);
 
         return mMonth;
 
@@ -55,11 +60,21 @@ public class MonthData {
 
     private void createDateStrings() {
         int lastdayofmonth;
+        int mesreal;
 
+        /* hay q sumar uno al mes para la fecha en string
+           tiene que haber otra forma mejro de hacer esto...
+        */
+        mesreal = imonth +1;
         lastdayofmonth = cal.getActualMaximum(cal.DAY_OF_MONTH);
 
-        beginMonth = String.valueOf(iyear) + "-" + String.valueOf(imonth) + "-01";
-        endMonth = String.valueOf(iyear) + "-" + String.valueOf(imonth) + "-" + String.valueOf(lastdayofmonth);
+        Log.i("fecha acutal:", cal.toString());
+
+        beginMonth = String.valueOf(iyear) + "-" + String.valueOf(mesreal) + "-01";
+        endMonth = String.valueOf(iyear) + "-" + String.valueOf(mesreal) + "-" + String.valueOf(lastdayofmonth);
+
+        beginMonth = "date('" + beginMonth + "')";
+        endMonth = "date('" + endMonth + "')";
 
         Log.i("fecha inicial:", beginMonth);
         Log.i("fecha final: ", endMonth);
@@ -74,7 +89,9 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " GROUP BY category ORDER BY TOTAL DESC";
         cCategories = db.rawQuery(sqlCategories, null);
 
         return cCategories;
@@ -88,10 +105,35 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlShops = "SELECT _id, place, sum(amount) as TOTAL from purchases GROUP BY place ORDER BY TOTAL DESC";
+        String sqlShops = "SELECT _id, place, sum(amount) as TOTAL from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " GROUP BY place ORDER BY TOTAL DESC";
         cShops = db.rawQuery(sqlShops, null);
 
         return cShops;
+
+    }
+
+    public String getTotalMonthSpendings() {
+        db = dbh.getReadableDatabase();
+        String totalMonth;
+
+        String sqlTotal = "SELECT sum(amount) as TOTAL from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth;
+
+        Cursor ctotal = db.rawQuery(sqlTotal, null);
+
+        ctotal.moveToFirst();
+        totalMonth = ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " €";
+
+        // esto no funciona.. no sé por qué...
+        if (totalMonth == "null €") {
+            totalMonth = "0 €";
+        }
+
+
+        return totalMonth;
+
 
     }
 }

@@ -30,6 +30,13 @@
         android:id="@+id/lblTotalSpendings"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/month_spendings"
+        android:id="@+id/lblMonthSpendings"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
     <ListView
 		android:id="@+id/lv_categories"
 		android:layout_width="match_parent"

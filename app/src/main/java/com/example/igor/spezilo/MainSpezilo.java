@@ -26,11 +26,15 @@ public class MainSpezilo extends AppCompatActivity {
     Spinner monthspinner;
     Spinner yearspinner;
     TextView lblspendings;
+    TextView lblmonthSpendings;
     ListView lvCategories;
     ListView lvShops;
 
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
+
+    int month;
+    int year;
     String MonthSelected;
     String YearSelected;
 
@@ -70,6 +74,7 @@ public class MainSpezilo extends AppCompatActivity {
         lvShops = (ListView) findViewById(R.id.lv_shops);
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
+        lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
@@ -81,8 +86,8 @@ public class MainSpezilo extends AppCompatActivity {
 
         fillGridCategories();
         connectWidgets(); //esto lo dejo para verlo, pero ahora no hace falta
-        updateCursorMonth();
-        mostrarDatos();
+        //updateCursorMonth();
+        //mostrarDatos();
     }
 
     @Override
@@ -98,7 +103,11 @@ public class MainSpezilo extends AppCompatActivity {
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
                         MonthSelected = String.valueOf(pos+1);
+                        month = pos;
                         Log.i("Escogido: ", MonthSelected);
+                        datosmes.createandupdateCursor(month, year);
+                        fillGridCategories();
+                        mostrarDatos();
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -111,7 +120,11 @@ public class MainSpezilo extends AppCompatActivity {
                 new AdapterView.OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, android.view.View v, int pos, long id) {
                         YearSelected = parent.getItemAtPosition(pos).toString();
+                        year = Integer.valueOf(YearSelected);
                         Log.i("Año escogido: ", YearSelected);
+                        datosmes.createandupdateCursor(month, year);
+                        fillGridCategories();
+                        mostrarDatos();
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -141,6 +154,13 @@ public class MainSpezilo extends AppCompatActivity {
         Log.i("Mostrar", total);
 
         lblspendings.setText(totalAusgabe);
+
+        String totalMes;
+
+        totalMes = datosmes.getTotalMonthSpendings();
+        totalMes = "Total gastado en el mes: " + totalMes;
+
+        lblmonthSpendings.setText(totalMes);
 
         c.close();
         ctotal.close();

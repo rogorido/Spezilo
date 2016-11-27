@@ -33,8 +33,12 @@ public class Settings extends AppCompatActivity {
 
         if (db!=null) {
 
+            db.delete("purchases", null, null)
+
+                    /*
             String sqlSentence = "DELETE FROM purchases";
             db.execSQL(sqlSentence);
+            */
 
         }
 
