@@ -120,8 +120,8 @@ public class Purchase extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(new Date(year, month, day));
 
-        Log.i("Año es: ", ano);
-        Log.i("Fecha es: ", fecha);
+        //Log.i("Año es: ", ano);
+        Log.i("Fecha metida es: ", fecha);
 
         values.put("amount", valor);
         values.put("person", persona);

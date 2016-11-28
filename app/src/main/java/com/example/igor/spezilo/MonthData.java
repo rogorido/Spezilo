@@ -61,6 +61,7 @@ public class MonthData {
     private void createDateStrings() {
         int lastdayofmonth;
         int mesreal;
+        String mesennumero;
 
         /* hay q sumar uno al mes para la fecha en string
            tiene que haber otra forma mejro de hacer esto...
@@ -68,10 +69,20 @@ public class MonthData {
         mesreal = imonth +1;
         lastdayofmonth = cal.getActualMaximum(cal.DAY_OF_MONTH);
 
-        Log.i("fecha acutal:", cal.toString());
+        /*
+            esto es una cutrada. Los meses <10 al pasarlos a String
+            son así: 2016-1-01, el problema es que sqlite necesita que
+            ese "1" sea "01". De todas formas tiene que haber otro sistema mejor.
+         */
 
-        beginMonth = String.valueOf(iyear) + "-" + String.valueOf(mesreal) + "-01";
-        endMonth = String.valueOf(iyear) + "-" + String.valueOf(mesreal) + "-" + String.valueOf(lastdayofmonth);
+        mesennumero = String.valueOf(mesreal);
+
+        if (mesennumero.length()==1) {
+            mesennumero = "0" + mesennumero;
+        }
+
+        beginMonth = String.valueOf(iyear) + "-" + mesennumero + "-01";
+        endMonth = String.valueOf(iyear) + "-" + mesennumero + "-" + String.valueOf(lastdayofmonth);
 
         beginMonth = "date('" + beginMonth + "')";
         endMonth = "date('" + endMonth + "')";
