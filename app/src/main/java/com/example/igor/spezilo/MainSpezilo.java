@@ -22,6 +22,8 @@ import android.content.Intent;
 
 import android.util.Log;
 
+import java.util.Calendar;
+
 public class MainSpezilo extends AppCompatActivity {
 
     Spinner monthspinner;
@@ -92,6 +94,7 @@ public class MainSpezilo extends AppCompatActivity {
         connectWidgets(); //esto lo dejo para verlo, pero ahora no hace falta
         //updateCursorMonth();
         //mostrarDatos();
+        loadCurrentDate();
     }
 
     @Override
@@ -248,5 +251,20 @@ public class MainSpezilo extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    private void loadCurrentDate() {
+        Calendar now;
+        int currentMonth;
+
+        now = Calendar.getInstance();
+        currentMonth = now.get(now.MONTH);
+
+        /*
+            TODO: falta lo del año!
+         */
+        monthspinner.setSelection(currentMonth);
+
+        }
+
 
 }
