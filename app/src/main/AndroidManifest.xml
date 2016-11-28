@@ -28,6 +28,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.igor.spezilo.MainSpezilo" />
         </activity>
+        <activity android:name=".ListPurchases"></activity>
     </application>
 
 </manifest>
