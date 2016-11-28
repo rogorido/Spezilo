@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Button;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
@@ -29,6 +30,7 @@ public class MainSpezilo extends AppCompatActivity {
     TextView lblmonthSpendings;
     ListView lvCategories;
     ListView lvShops;
+    Button btnListPurchases;
 
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
@@ -75,6 +77,8 @@ public class MainSpezilo extends AppCompatActivity {
 
         lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
+
+        btnListPurchases = (Button) findViewById(R.id.btnListPurchases);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
@@ -132,6 +136,13 @@ public class MainSpezilo extends AppCompatActivity {
                     }
                 }
         );
+
+        btnListPurchases.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Log.i("spezilo", "estamos aquí antes de listas...");
+                listPurchases();
+            }
+        });
 
     }
 
@@ -228,6 +239,14 @@ public class MainSpezilo extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void listPurchases() {
+        Intent intent = new Intent(MainSpezilo.this, ListPurchases.class);
+        intent.putExtra("month", String.valueOf(month));
+        intent.putExtra("year", String.valueOf(year));
+        startActivity(intent);
+
     }
 
 }

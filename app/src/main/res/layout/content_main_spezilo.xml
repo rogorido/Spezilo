@@ -37,6 +37,12 @@
         android:id="@+id/lblMonthSpendings"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_list_purchases"
+        android:id="@+id/btnListPurchases"/>
+
     <ListView
 		android:id="@+id/lv_categories"
 		android:layout_width="match_parent"

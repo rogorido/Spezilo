@@ -44,9 +44,9 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlGeneral = "SELECT _id, category, sum(amount) as TOTAL from purchases " +
+        String sqlGeneral = "SELECT * from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
-                " GROUP BY category ORDER BY TOTAL DESC";
+                " ORDER BY date DESC";
 
         mMonth = db.rawQuery(sqlGeneral, null);
 

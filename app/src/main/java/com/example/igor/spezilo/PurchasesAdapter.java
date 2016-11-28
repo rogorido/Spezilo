@@ -33,7 +33,7 @@ public class PurchasesAdapter extends CursorAdapter {
 
         // Extract properties from cursor
         String date = cursor.getString((cursor.getColumnIndex("date")));
-        double amount = cursor.getDouble(cursor.getColumnIndex("TOTAL"));
+        double amount = cursor.getDouble(cursor.getColumnIndex("amount"));
         String category = cursor.getString(cursor.getColumnIndex("category"));
         String person = cursor.getString(cursor.getColumnIndex("person"));
         String place = cursor.getString(cursor.getColumnIndex("place"));
