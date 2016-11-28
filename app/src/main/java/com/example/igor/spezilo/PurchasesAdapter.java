@@ -30,6 +30,7 @@ public class PurchasesAdapter extends CursorAdapter {
         TextView tvCategory = (TextView) view.findViewById(R.id.tvCategoryPurchase);
         TextView tvPerson = (TextView) view.findViewById(R.id.tvPersonPurchase);
         TextView tvPlace = (TextView) view.findViewById(R.id.tvPlacePurchase);
+        TextView tvDescription = (TextView) view.findViewById(R.id.tvDescriptionPurchase);
 
         // Extract properties from cursor
         String date = cursor.getString((cursor.getColumnIndex("date")));
@@ -37,6 +38,7 @@ public class PurchasesAdapter extends CursorAdapter {
         String category = cursor.getString(cursor.getColumnIndex("category"));
         String person = cursor.getString(cursor.getColumnIndex("person"));
         String place = cursor.getString(cursor.getColumnIndex("place"));
+        String description = cursor.getString(cursor.getColumnIndex("description"));
 
         // Populate fields with extracted properties
         tvDate.setText(date);
@@ -44,6 +46,7 @@ public class PurchasesAdapter extends CursorAdapter {
         tvCategory.setText(category);
         tvPerson.setText(person);
         tvPlace.setText(place);
+        tvDescription.setText(description);
 
     }
 }
