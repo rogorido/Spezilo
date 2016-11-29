@@ -3,6 +3,9 @@ package com.example.igor.spezilo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ public class ListPurchases extends AppCompatActivity {
 
     MonthData datosmes;
     Cursor cMonth;
+    PurchasesAdapter adaptador;
 
     PurchaseSQLiteHelper dbh;
 
@@ -31,7 +35,6 @@ public class ListPurchases extends AppCompatActivity {
         month = Integer.valueOf(getIntent().getExtras().getString("month"));
         year = Integer.valueOf(getIntent().getExtras().getString("year"));
 
-        Log.i("spezilo", "estamos aquí en la activity listpurchases");
         datosmes = new MonthData(month, year, this);
         cMonth = datosmes.getMonthCursor();
 
@@ -40,13 +43,44 @@ public class ListPurchases extends AppCompatActivity {
         lvPurchases = (ListView) findViewById(R.id.lv_purchases);
 
         fillList();
+        connectWidgets();
 
     }
 
     private void fillList() {
 
-        PurchasesAdapter adaptador = new PurchasesAdapter(this, cMonth);
+        adaptador = new PurchasesAdapter(this, cMonth);
 
         lvPurchases.setAdapter(adaptador);
+    }
+
+    /*
+        esto es realmetne para que al hacer click largo
+        borre un item
+     */
+    private void connectWidgets() {
+        lvPurchases.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, final long idpurchase) {
+
+
+                new AlertDialog.Builder(ListPurchases.this)
+                        .setMessage("¿Quieres realmente borrar esta entrada?")
+                        .setCancelable(false)
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Log.w("Spezilo", "borrando");
+                                datosmes.deleteItem(idpurchase);
+                                cMonth = datosmes.createandupdateCursor(month, year);
+                                adaptador.changeCursor(cMonth);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return false;
+            }
+        });
+
     }
 }

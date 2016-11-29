@@ -142,9 +142,21 @@ public class MonthData {
             totalMonth = "0 €";
         }
 
-
         return totalMonth;
+    }
 
+    /*
+        esto habría q ponerlo como boolean!
+     */
+    public void deleteItem(long id) {
+        SQLiteDatabase dbb;
+
+        dbb = dbh.getWritableDatabase();
+
+        String sqlDelete = "DELETE FROM purchases WHERE _id=" + id;
+
+        dbb.execSQL(sqlDelete);
+        dbb.close();
 
     }
 }
