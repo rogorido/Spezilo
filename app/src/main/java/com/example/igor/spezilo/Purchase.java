@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.EditText;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +35,7 @@ public class Purchase extends AppCompatActivity {
     Spinner spCategory;
     Spinner spShop;
     DatePicker datePicker;
-    TextView txtAmount;
+    EditText txtAmount;
     TextView txtDescription;
 
     @Override
@@ -46,7 +47,7 @@ public class Purchase extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        txtAmount = (TextView) findViewById(R.id.txtAmount);
+        txtAmount = (EditText) findViewById(R.id.txtAmount);
         txtDescription = (TextView) findViewById(R.id.txtDescription);
 
         spinnerPerson = (Spinner) findViewById(R.id.cboPerson);
@@ -89,7 +90,12 @@ public class Purchase extends AppCompatActivity {
         }
     }
 
-    void savePurchase() {
+    private void savePurchase() {
+
+        /*
+            habría q comprobar si txtAmount está vacio
+            pero increíblemente no lo consigo...
+         */
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
         db = dbh.getWritableDatabase();
 
