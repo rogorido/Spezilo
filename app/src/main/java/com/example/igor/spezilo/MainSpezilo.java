@@ -104,6 +104,15 @@ public class MainSpezilo extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        fillGridCategories();
+        mostrarDatos();
+
+    }
+
     void connectWidgets() {
 
         monthspinner.setOnItemSelectedListener(
