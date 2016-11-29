@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
@@ -81,6 +82,7 @@ public class Purchase extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_accept:
                 savePurchase();
+                finish();
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -91,10 +93,17 @@ public class Purchase extends AppCompatActivity {
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
         db = dbh.getWritableDatabase();
 
-        db.insert(
+        long rowInserted = db.insert(
                 "purchases",
                 null,
                 datosValues());
+
+        if(rowInserted != -1)
+            Toast.makeText(getApplicationContext(), "Añadida nueva compra",
+                    Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getApplicationContext(), "Something wrong",
+                    Toast.LENGTH_SHORT).show();
 
     }
 
