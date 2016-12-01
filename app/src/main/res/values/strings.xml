@@ -11,4 +11,6 @@
     <string name="category_purchase">Categoría</string>
     <string name="month_spendings">Total gasto mensual: </string>
     <string name="action_list_purchases">Ver mes</string>
+    <string name="action_export">Exportar</string>
+
 </resources>
