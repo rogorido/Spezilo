@@ -76,8 +76,7 @@ public class MainSpezilo extends AppCompatActivity {
 
         lvCategories = (ListView) findViewById(R.id.lv_categories);
         lvShops = (ListView) findViewById(R.id.lv_shops);
-
-        lblspendings = (TextView) findViewById(R.id.lblTotalSpendings);
+        
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
         btnListPurchases = (Button) findViewById(R.id.btnListPurchases);
@@ -159,24 +158,6 @@ public class MainSpezilo extends AppCompatActivity {
     }
 
     private void mostrarDatos() {
-        db = dbh.getWritableDatabase();
-
-        String sqlC = "SELECT * from purchases";
-        String sqlTotal = "SELECT sum(amount) as TOTAL from purchases";
-
-        Cursor c = db.rawQuery(sqlC, null);
-        Cursor ctotal = db.rawQuery(sqlTotal, null);
-
-        String total = "Total es: " + c.getCount();
-        String totalAusgabe = "";
-
-        if (ctotal.moveToFirst()){
-            totalAusgabe = "Total gastado: " + ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " €";}
-        //double totalAusgabe = ctotal.getDouble(0);
-
-        Log.i("Mostrar", total);
-
-        lblspendings.setText(totalAusgabe);
 
         String totalMes;
 
@@ -185,10 +166,6 @@ public class MainSpezilo extends AppCompatActivity {
 
         lblmonthSpendings.setText(totalMes);
 
-        c.close();
-        ctotal.close();
-
-        db.close();
     }
 
     private void fillGridCategoriesANTIGUO() {
