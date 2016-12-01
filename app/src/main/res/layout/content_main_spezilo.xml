@@ -5,20 +5,19 @@
     android:id="@+id/lytContenedor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:dividerPadding="19dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.igor.spezilo.MainSpezilo"
     tools:showIn="@layout/activity_main_spezilo">
 
     <Spinner
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cmbMonths"
         android:layout_alignParentLeft="true" />
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cmbYears"
         android:layout_alignParentRight="true" />
@@ -44,20 +43,41 @@
         android:layout_height="wrap_content"
         android:text="@string/month_spendings"
         android:id="@+id/lblMonthSpendings"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_below="@+id/btnListPurchases"
+        android:layout_alignParentRight="true"
+        android:textAppearance="?android:attr/textAppearanceMedium" >
+    </TextView>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categorías"
+        android:id="@+id/lblCategories"
+        android:layout_below="@+id/lblMonthSpendings"
+        android:layout_alignParentRight="true">
+    </TextView>
 
     <ListView
 		android:id="@+id/lv_categories"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+        android:layout_below="@+id/lblCategories">
     </ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tiendas"
+        android:id="@+id/lblTiendas"
+        android:layout_below="@+id/lv_categories"
+        android:layout_alignParentRight="true">
+    </TextView>
 
     <ListView
         android:id="@+id/lv_shops"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTiendas">
     </ListView>
 
 </RelativeLayout>

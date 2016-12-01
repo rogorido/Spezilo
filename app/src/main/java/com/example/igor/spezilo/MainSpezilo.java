@@ -76,7 +76,7 @@ public class MainSpezilo extends AppCompatActivity {
 
         lvCategories = (ListView) findViewById(R.id.lv_categories);
         lvShops = (ListView) findViewById(R.id.lv_shops);
-        
+
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
         btnListPurchases = (Button) findViewById(R.id.btnListPurchases);
@@ -162,7 +162,7 @@ public class MainSpezilo extends AppCompatActivity {
         String totalMes;
 
         totalMes = datosmes.getTotalMonthSpendings();
-        totalMes = "Total gastado en el mes: " + totalMes;
+        totalMes = "Total/mes: " + totalMes;
 
         lblmonthSpendings.setText(totalMes);
 
@@ -174,9 +174,9 @@ public class MainSpezilo extends AppCompatActivity {
          */
         db = dbh.getWritableDatabase();
 
-        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
+        String sqlCategories = "SELECT _id, category, round(sum(amount),2) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
         Cursor ctotal = db.rawQuery(sqlCategories, null);
-        String sqlShops = "SELECT _id, place, sum(amount) as TOTAL from purchases GROUP BY place ORDER BY TOTAL DESC";
+        String sqlShops = "SELECT _id, place, round(sum(amount),2) as TOTAL from purchases GROUP BY place ORDER BY TOTAL DESC";
         Cursor shopstotal = db.rawQuery(sqlShops, null);
 
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
