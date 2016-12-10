@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="no_gastos">Keine Ausgaben</string>
-    <string name="action_delete_db">DB löschen</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="person_paying">Person</string>
-    <string name="place_shop">Geschäft</string>
-</resources>
