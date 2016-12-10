@@ -100,7 +100,7 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlCategories = "SELECT _id, category, sum(amount) as TOTAL from purchases " +
+        String sqlCategories = "SELECT _id, category, round(sum(amount),2) as TOTAL from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
                 " GROUP BY category ORDER BY TOTAL DESC";
         cCategories = db.rawQuery(sqlCategories, null);
@@ -116,7 +116,7 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlShops = "SELECT _id, place, sum(amount) as TOTAL from purchases " +
+        String sqlShops = "SELECT _id, place, round(sum(amount),2) as TOTAL from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
                 " GROUP BY place ORDER BY TOTAL DESC";
         cShops = db.rawQuery(sqlShops, null);
@@ -129,7 +129,7 @@ public class MonthData {
         db = dbh.getReadableDatabase();
         String totalMonth;
 
-        String sqlTotal = "SELECT sum(amount) as TOTAL from purchases " +
+        String sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth;
 
         Cursor ctotal = db.rawQuery(sqlTotal, null);
