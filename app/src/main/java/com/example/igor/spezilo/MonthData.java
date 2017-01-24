@@ -176,27 +176,47 @@ public class MonthData {
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         Log.i("spezilo", fullPath.toString());
 
+        String nameFile;
+
+        Calendar now;
+        int currentMonth;
+        int currentYear;
+
+        now = Calendar.getInstance();
+        currentMonth = now.get(now.nam);
+        currentYear = now.get(now.YEAR);
+
         File fichero = new File(fullPath,"prueba.xml");
         try {
             OutputStreamWriter fout =
                     new OutputStreamWriter(
                             new FileOutputStream(fichero));
 
-            String sb = "nuevo...";
+            String finalText = createCSV();
 
-            Log.i("spezilo", sb);
-
-            fout.write(sb);
+            fout.write(finalText);
             fout.flush();
             fout.close();
         } catch (IOException ioe) {
             Log.i("spezilo", "hay un error");
 
         }
+    }
 
+    private String createCSV(){
+        String textCSV = "";
 
-//Escribimos el resultado a un fichero
+        mMonth.moveToFirst();
 
+            while (mMonth.moveToNext()) {
+
+                textCSV = textCSV + mMonth.getString(2) + "," + mMonth.getString(1) + "," + mMonth.getString(3)
+                        + "," + mMonth.getString(4) + "," + mMonth.getString(5) + "," + mMonth.getString(6)
+                        + "\n";
+
+            }
+
+        return textCSV;
 
     }
 }
