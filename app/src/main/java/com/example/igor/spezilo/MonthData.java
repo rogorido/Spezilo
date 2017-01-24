@@ -7,6 +7,7 @@ import android.database.Cursor;
 
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -166,7 +167,7 @@ public class MonthData {
 
     }
 
-    public void exportData(){
+    public boolean exportData(){
 //Creamos un fichero en la memoria interna
         //String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/documents";
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -188,8 +189,13 @@ public class MonthData {
             fout.write(finalText);
             fout.flush();
             fout.close();
+
+            return true;
+
         } catch (IOException ioe) {
             Log.i("spezilo", "hay un error");
+
+            return false;
 
         }
     }

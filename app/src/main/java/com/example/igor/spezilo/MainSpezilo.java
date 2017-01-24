@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.content.Intent;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -158,7 +159,17 @@ public class MainSpezilo extends AppCompatActivity {
 
         btnExport.setOnClickListener( new View.OnClickListener(){
             public void onClick(View arg0){
-                datosmes.exportData();
+                boolean exporting;
+
+                exporting = datosmes.exportData();
+
+                if(exporting)
+                    Toast.makeText(getApplicationContext(), "Export war erfolgreich!",
+                            Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Export scheiterte!",
+                            Toast.LENGTH_LONG).show();
+
             }
 
         });
