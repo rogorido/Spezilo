@@ -5,7 +5,17 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
+import android.os.Environment;
 import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
 
 public class MonthData {
 
@@ -161,6 +171,31 @@ public class MonthData {
     }
 
     public void exportData(){
+//Creamos un fichero en la memoria interna
+        //String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/documents";
+        File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        Log.i("spezilo", fullPath.toString());
+
+        File fichero = new File(fullPath,"prueba.xml");
+        try {
+            OutputStreamWriter fout =
+                    new OutputStreamWriter(
+                            new FileOutputStream(fichero));
+
+            String sb = "nuevo...";
+
+            Log.i("spezilo", sb);
+
+            fout.write(sb);
+            fout.flush();
+            fout.close();
+        } catch (IOException ioe) {
+            Log.i("spezilo", "hay un error");
+
+        }
+
+
+//Escribimos el resultado a un fichero
 
 
     }
