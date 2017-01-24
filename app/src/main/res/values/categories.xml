@@ -5,6 +5,8 @@
         <item>Körperpflege</item>
         <item>Putzen</item>
         <item>Freizeit</item>
+        <item>Medikamente</item>
+        <item>Haushalt</item>
         <item>Andere</item>
     </string-array>
 </resources>
