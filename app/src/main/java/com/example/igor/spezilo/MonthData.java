@@ -16,6 +16,8 @@ import java.io.OutputStreamWriter;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import java.util.Calendar;
+
 
 public class MonthData {
 
@@ -176,17 +178,13 @@ public class MonthData {
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         Log.i("spezilo", fullPath.toString());
 
+        // no es el mes y año actual! sino el de la exportación!
         String nameFile;
 
-        Calendar now;
-        int currentMonth;
-        int currentYear;
+        // hay que sumar uno al
+        nameFile = String.valueOf(iyear) + "-" + String.valueOf(imonth+1)+ ".csv";
 
-        now = Calendar.getInstance();
-        currentMonth = now.get(now.nam);
-        currentYear = now.get(now.YEAR);
-
-        File fichero = new File(fullPath,"prueba.xml");
+        File fichero = new File(fullPath, nameFile);
         try {
             OutputStreamWriter fout =
                     new OutputStreamWriter(
@@ -206,13 +204,27 @@ public class MonthData {
     private String createCSV(){
         String textCSV = "";
 
+        textCSV = "Kategorie,Ort,NW,ISM,Notiz,Datum" + "\n";
+
         mMonth.moveToFirst();
 
             while (mMonth.moveToNext()) {
 
-                textCSV = textCSV + mMonth.getString(2) + "," + mMonth.getString(1) + "," + mMonth.getString(3)
-                        + "," + mMonth.getString(4) + "," + mMonth.getString(5) + "," + mMonth.getString(6)
-                        + "\n";
+                textCSV += mMonth.getString(3) + "," + mMonth.getString(4);
+
+                String person = mMonth.getString(2);
+                Log.i("spezilo", person);
+
+                if (person.equals("Nathalie Wergles")) {
+                    Log.i("spezilo", "Wergles!");
+
+                    textCSV += "," + mMonth.getString(1) + ",0.0";
+                }
+                else {
+                    textCSV += ",0.0," + mMonth.getString(1);
+                }
+
+                textCSV += "," + mMonth.getString(5) + "," + mMonth.getString(6) + "\n";
 
             }
 
