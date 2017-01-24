@@ -33,6 +33,7 @@ public class MainSpezilo extends AppCompatActivity {
     ListView lvCategories;
     ListView lvShops;
     Button btnListPurchases;
+    Button btnExport;
 
     PurchaseSQLiteHelper dbh;
     SQLiteDatabase db;
@@ -80,6 +81,7 @@ public class MainSpezilo extends AppCompatActivity {
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
         btnListPurchases = (Button) findViewById(R.id.btnListPurchases);
+        btnExport = (Button) findViewById(R.id.btnExport);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
@@ -153,6 +155,14 @@ public class MainSpezilo extends AppCompatActivity {
                 Log.i("spezilo", "estamos aquí antes de listas...");
                 listPurchases();
             }
+        });
+
+        btnExport.setOnClickListener( new View.OnClickListener(){
+            public void onClick(View arg0){
+                Log.i("spezilo", "Pulsamos exportar");
+                datosmes.exportData();
+            }
+
         });
 
     }
