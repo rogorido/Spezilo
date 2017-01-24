@@ -241,14 +241,20 @@ public class MainSpezilo extends AppCompatActivity {
     private void loadCurrentDate() {
         Calendar now;
         int currentMonth;
+        int currentYear;
 
         now = Calendar.getInstance();
         currentMonth = now.get(now.MONTH);
+        currentYear = now.get(now.YEAR);
 
         /*
-            TODO: falta lo del año!
+            tenemos que restar 2016 pq para el spinner ese
+            hay que pasarle la posición
          */
+        currentYear = currentYear - 2016;
+
         monthspinner.setSelection(currentMonth);
+        yearspinner.setSelection(currentYear);
 
         }
 
