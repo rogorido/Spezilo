@@ -152,14 +152,12 @@ public class MainSpezilo extends AppCompatActivity {
 
         btnListPurchases.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                Log.i("spezilo", "estamos aquí antes de listas...");
                 listPurchases();
             }
         });
 
         btnExport.setOnClickListener( new View.OnClickListener(){
             public void onClick(View arg0){
-                Log.i("spezilo", "Pulsamos exportar");
                 datosmes.exportData();
             }
 

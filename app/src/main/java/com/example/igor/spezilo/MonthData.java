@@ -8,16 +8,10 @@ import android.database.Cursor;
 import android.os.Environment;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.FileInputStream;
-import java.io.InputStream;
-
-import java.util.Calendar;
-
 
 public class MonthData {
 
@@ -176,7 +170,6 @@ public class MonthData {
 //Creamos un fichero en la memoria interna
         //String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/documents";
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        Log.i("spezilo", fullPath.toString());
 
         // no es el mes y año actual! sino el de la exportación!
         String nameFile;
@@ -213,10 +206,8 @@ public class MonthData {
                 textCSV += mMonth.getString(3) + "," + mMonth.getString(4);
 
                 String person = mMonth.getString(2);
-                Log.i("spezilo", person);
 
                 if (person.equals("Nathalie Wergles")) {
-                    Log.i("spezilo", "Wergles!");
 
                     textCSV += "," + mMonth.getString(1) + ",0.0";
                 }
