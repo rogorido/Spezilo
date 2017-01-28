@@ -208,7 +208,7 @@ public class MonthData {
 
         mMonth.moveToFirst();
 
-            while (mMonth.moveToNext()) {
+            while (!mMonth.isAfterLast()) {
 
                 String person = mMonth.getString(2);
 
@@ -225,6 +225,8 @@ public class MonthData {
                 // a veces se cuela un return en la notiz... lo quitamos
                 notiz = mMonth.getString(5).replace("\n", "").replace("\r","");
                 textCSV += "," + mMonth.getString(3) + "," + notiz + "\n";
+
+                mMonth.moveToNext();
 
             }
 
