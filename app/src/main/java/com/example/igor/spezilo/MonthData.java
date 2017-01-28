@@ -202,26 +202,29 @@ public class MonthData {
 
     private String createCSV(){
         String textCSV = "";
+        String notiz = "";
 
-        textCSV = "Kategorie,Ort,NW,ISM,Notiz,Datum" + "\n";
+        textCSV = "NW,ISM,Datum,Ort,Kategorie,Notiz" + "\n";
 
         mMonth.moveToFirst();
 
             while (mMonth.moveToNext()) {
 
-                textCSV += mMonth.getString(3) + "," + mMonth.getString(4);
-
                 String person = mMonth.getString(2);
 
                 if (person.equals("Nathalie Wergles")) {
 
-                    textCSV += "," + mMonth.getString(1) + ",0.0";
+                    textCSV += mMonth.getString(1) + ",0.0";
                 }
                 else {
-                    textCSV += ",0.0," + mMonth.getString(1);
+                    textCSV += "0.0," + mMonth.getString(1);
                 }
 
-                textCSV += "," + mMonth.getString(5) + "," + mMonth.getString(6) + "\n";
+                textCSV += "," + mMonth.getString(6) + "," + mMonth.getString(4);
+
+                // a veces se cuela un return en la notiz... lo quitamos
+                notiz = mMonth.getString(5).replace("\n", "").replace("\r","");
+                textCSV += "," + mMonth.getString(3) + "," + notiz + "\n";
 
             }
 
