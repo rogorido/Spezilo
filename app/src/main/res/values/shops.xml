@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="shops_array">
-        <item>Aldi</item>
-        <item>Rewe</item>
-        <item>DM</item>
-        <item>Metzger</item>
+        <item>Día</item>
+        <item>Gadis</item>
+        <item>Mercadona</item>
+        <item>Mercado</item>
         <item>Baeckerei</item>
-        <item>Tuerke</item>
-        <item>Norma</item>
-        <item>Chinese</item>
-        <item>DelHaize</item>
+        <item>Friseur</item>
+        <item>Carrefour</item>
+        <item>Olibher</item>
         <item>Apotheke</item>
         <item>Andere</item>
     </string-array>
