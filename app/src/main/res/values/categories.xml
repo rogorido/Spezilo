@@ -2,6 +2,7 @@
 <resources>
     <string-array name="categories_array">
         <item>Lebensmittel</item>
+        <item>Privat</item>
         <item>Körperpflege</item>
         <item>Putzen</item>
         <item>Freizeit</item>
