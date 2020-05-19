@@ -3,9 +3,11 @@
     <string-array name="categories_array">
         <item>Lebensmittel</item>
         <item>Privat</item>
-        <item>Körperpflege</item>
+        <item>Elias</item>
+        <item>Koerperpflege</item>
         <item>Putzen</item>
         <item>Freizeit</item>
+        <item>Transport</item>
         <item>Medikamente</item>
         <item>Haushalt</item>
         <item>Andere</item>

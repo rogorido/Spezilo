@@ -53,7 +53,7 @@ public class MonthData {
 
         String sqlGeneral = "SELECT * from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
-                " ORDER BY date DESC";
+                " ORDER BY category";
 
         mMonth = db.rawQuery(sqlGeneral, null);
 

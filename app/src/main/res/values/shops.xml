@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="shops_array">
-        <item>Día</item>
+        <item>Dia</item>
         <item>Gadis</item>
         <item>Mercadona</item>
         <item>Mercado</item>
