@@ -182,7 +182,7 @@ public class MonthData {
         try {
             OutputStreamWriter fout =
                     new OutputStreamWriter(
-                            new FileOutputStream(fichero));
+                            new FileOutputStream(fichero, false));
 
             String finalText = createCSV();
 
