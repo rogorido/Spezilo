@@ -74,7 +74,7 @@ public class MonthData {
            tiene que haber otra forma mejro de hacer esto...
         */
         mesreal = imonth +1;
-        lastdayofmonth = cal.getActualMaximum(cal.DAY_OF_MONTH);
+        lastdayofmonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         /*
             esto es una cutrada. Los meses <10 al pasarlos a String
