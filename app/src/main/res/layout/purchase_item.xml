@@ -46,4 +46,11 @@
         android:layout_below="@+id/tvDatePurchase"
         android:layout_alignParentLeft="true"/>
 
+    <TextView
+        android:id="@+id/tvPrivatePurchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPlacePurchase"
+        android:layout_alignParentRight="true"/>
+
 </RelativeLayout>
