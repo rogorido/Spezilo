@@ -88,6 +88,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/cboShop"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblPrivat"
+                android:text="@string/privat_cb"/>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cbPrivat"/>
+
             <DatePicker
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

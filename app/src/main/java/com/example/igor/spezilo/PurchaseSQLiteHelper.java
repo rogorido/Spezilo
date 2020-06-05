@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PurchaseSQLiteHelper extends SQLiteOpenHelper {
 
     String sqlSentence = "CREATE TABLE purchases (_id INTEGER PRIMARY KEY, amount REAL, person " +
-            "TEXT, category TEXT, place TEXT, description TEXT, date TEXT, exported INTEGER)";
+            "TEXT, category TEXT, place TEXT, description TEXT, date TEXT, privat INTEGER, exported INTEGER)";
 
     public PurchaseSQLiteHelper(Context context, String name, CursorFactory cf, int version) {
         super(context, name, cf, version);
