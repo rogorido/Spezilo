@@ -7,7 +7,7 @@ import android.database.Cursor;
 
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +24,8 @@ public class MonthData {
     String endMonth;
     Calendar cal;
 
-    Cursor mMonth;
+    Cursor mMonthCommonExpenditures;
+    Cursor mMonthPrivat;
 
     public MonthData(int month, int year, Context context) {
         imonth = month;
@@ -37,7 +38,7 @@ public class MonthData {
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
-        mMonth = createandupdateCursor(imonth, iyear);
+        mMonthCommonExpenditures = createandupdateCursor(imonth, iyear);
 
     }
 
@@ -55,14 +56,14 @@ public class MonthData {
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
                 " ORDER BY category, date";
 
-        mMonth = db.rawQuery(sqlGeneral, null);
+        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
 
-        return mMonth;
+        return mMonthCommonExpenditures;
 
     }
 
     public Cursor getMonthCursor(){
-        return mMonth;
+        return mMonthCommonExpenditures;
     }
 
     private void createDateStrings() {
@@ -206,27 +207,27 @@ public class MonthData {
 
         textCSV = "NW,ISM,Datum,Ort,Kategorie,Notiz" + "\n";
 
-        mMonth.moveToFirst();
+        mMonthCommonExpenditures.moveToFirst();
 
-            while (!mMonth.isAfterLast()) {
+            while (!mMonthCommonExpenditures.isAfterLast()) {
 
-                String person = mMonth.getString(2);
+                String person = mMonthCommonExpenditures.getString(2);
 
                 if (person.equals("Nathalie Wergles")) {
 
-                    textCSV += mMonth.getString(1) + ",0.0";
+                    textCSV += mMonthCommonExpenditures.getString(1) + ",0.0";
                 }
                 else {
-                    textCSV += "0.0," + mMonth.getString(1);
+                    textCSV += "0.0," + mMonthCommonExpenditures.getString(1);
                 }
 
-                textCSV += "," + mMonth.getString(6) + "," + mMonth.getString(4);
+                textCSV += "," + mMonthCommonExpenditures.getString(6) + "," + mMonthCommonExpenditures.getString(4);
 
                 // a veces se cuela un return en la notiz... lo quitamos
-                notiz = mMonth.getString(5).replace("\n", "").replace("\r","");
-                textCSV += "," + mMonth.getString(3) + "," + notiz + "\n";
+                notiz = mMonthCommonExpenditures.getString(5).replace("\n", "").replace("\r","");
+                textCSV += "," + mMonthCommonExpenditures.getString(3) + "," + notiz + "\n";
 
-                mMonth.moveToNext();
+                mMonthCommonExpenditures.moveToNext();
 
             }
 
