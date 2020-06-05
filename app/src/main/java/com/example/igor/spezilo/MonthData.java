@@ -38,11 +38,11 @@ public class MonthData {
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
-        mMonthCommonExpenditures = createandupdateCursor(imonth, iyear);
+        mMonthCommonExpenditures = createandupdateCursorCommon(imonth, iyear);
 
     }
 
-    public Cursor createandupdateCursor(int month, int year) {
+    public Cursor createandupdateCursorCommon(int month, int year) {
 
         imonth = month;
         iyear = year;
@@ -185,7 +185,7 @@ public class MonthData {
                     new OutputStreamWriter(
                             new FileOutputStream(fichero, false));
 
-            String finalText = createCSV();
+            String finalText = createCSV(mMonthCommonExpenditures);
 
             fout.write(finalText);
             fout.flush();
@@ -197,37 +197,36 @@ public class MonthData {
             Log.i("spezilo", "hay un error");
 
             return false;
-
         }
     }
 
-    private String createCSV(){
+    private String createCSV(Cursor monthDataToExport){
         String textCSV = "";
         String notiz = "";
 
         textCSV = "NW,ISM,Datum,Ort,Kategorie,Notiz" + "\n";
 
-        mMonthCommonExpenditures.moveToFirst();
+        monthDataToExport.moveToFirst();
 
-            while (!mMonthCommonExpenditures.isAfterLast()) {
+            while (!monthDataToExport.isAfterLast()) {
 
-                String person = mMonthCommonExpenditures.getString(2);
+                String person = monthDataToExport.getString(2);
 
                 if (person.equals("Nathalie Wergles")) {
 
-                    textCSV += mMonthCommonExpenditures.getString(1) + ",0.0";
+                    textCSV += monthDataToExport.getString(1) + ",0.0";
                 }
                 else {
-                    textCSV += "0.0," + mMonthCommonExpenditures.getString(1);
+                    textCSV += "0.0," + monthDataToExport.getString(1);
                 }
 
-                textCSV += "," + mMonthCommonExpenditures.getString(6) + "," + mMonthCommonExpenditures.getString(4);
+                textCSV += "," + monthDataToExport.getString(6) + "," + monthDataToExport.getString(4);
 
                 // a veces se cuela un return en la notiz... lo quitamos
-                notiz = mMonthCommonExpenditures.getString(5).replace("\n", "").replace("\r","");
-                textCSV += "," + mMonthCommonExpenditures.getString(3) + "," + notiz + "\n";
+                notiz = monthDataToExport.getString(5).replace("\n", "").replace("\r","");
+                textCSV += "," + monthDataToExport.getString(3) + "," + notiz + "\n";
 
-                mMonthCommonExpenditures.moveToNext();
+                monthDataToExport.moveToNext();
 
             }
 
