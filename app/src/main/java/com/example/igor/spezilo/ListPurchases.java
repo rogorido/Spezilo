@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.ListView;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
 import android.util.Log;
@@ -71,7 +68,7 @@ public class ListPurchases extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 Log.w("Spezilo", "borrando");
                                 datosmes.deleteItem(idpurchase);
-                                cMonth = datosmes.createandupdateCursor(month, year);
+                                cMonth = datosmes.createCursorAll(month, year);
                                 adaptador.changeCursor(cMonth);
                             }
                         })

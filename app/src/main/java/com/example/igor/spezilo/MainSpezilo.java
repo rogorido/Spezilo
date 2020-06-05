@@ -2,7 +2,6 @@ package com.example.igor.spezilo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -123,7 +122,7 @@ public class MainSpezilo extends AppCompatActivity {
                         MonthSelected = String.valueOf(pos+1);
                         month = pos;
                         Log.i("Escogido: ", MonthSelected);
-                        datosmes.createandupdateCursor(month, year);
+                        datosmes.createCursorAll(month, year);
                         fillGridCategories();
                         mostrarDatos();
                     }
@@ -140,7 +139,7 @@ public class MainSpezilo extends AppCompatActivity {
                         YearSelected = parent.getItemAtPosition(pos).toString();
                         year = Integer.valueOf(YearSelected);
                         Log.i("Año escogido: ", YearSelected);
-                        datosmes.createandupdateCursor(month, year);
+                        datosmes.createCursorAll(month, year);
                         fillGridCategories();
                         mostrarDatos();
                     }

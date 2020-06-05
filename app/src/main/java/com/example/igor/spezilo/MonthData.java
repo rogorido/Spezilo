@@ -25,7 +25,7 @@ public class MonthData {
     Calendar cal;
 
     Cursor mMonthCommonExpenditures;
-    Cursor mMonthPrivat;
+    Cursor mMonthPrivate;
 
     public MonthData(int month, int year, Context context) {
         imonth = month;
@@ -38,11 +38,12 @@ public class MonthData {
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
-        mMonthCommonExpenditures = createandupdateCursorCommon(imonth, iyear);
+        mMonthCommonExpenditures = createCursorAll(imonth, iyear);
+        mMonthPrivate = createCursorPrivate(imonth, iyear);
 
     }
 
-    public Cursor createandupdateCursorCommon(int month, int year) {
+    public Cursor createCursorAll(int month, int year) {
 
         imonth = month;
         iyear = year;
@@ -54,6 +55,27 @@ public class MonthData {
 
         String sqlGeneral = "SELECT * from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " ORDER BY category, date";
+
+        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
+
+        return mMonthCommonExpenditures;
+
+    }
+
+    public Cursor createCursorPrivate(int month, int year) {
+
+        imonth = month;
+        iyear = year;
+
+        cal.set(iyear, imonth, 1);
+        createDateStrings();
+
+        db = dbh.getReadableDatabase();
+
+        String sqlGeneral = "SELECT * from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " AND privat = 1 " +
                 " ORDER BY category, date";
 
         mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
