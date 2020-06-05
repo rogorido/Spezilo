@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.CheckBox;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ public class Purchase extends AppCompatActivity {
     DatePicker datePicker;
     EditText txtAmount;
     TextView txtDescription;
+    CheckBox cbPrivat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,8 @@ public class Purchase extends AppCompatActivity {
                 getResources().getStringArray(R.array.shops_array));
         shopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spShop.setAdapter(shopAdapter);
+
+        cbPrivat = (CheckBox) findViewById(R.id.cbPrivat);
 
         datePicker = (DatePicker) findViewById(R.id.dtDatePicker);
     }
@@ -114,6 +118,7 @@ public class Purchase extends AppCompatActivity {
     }
 
     public ContentValues datosValues ()    {
+
         ContentValues values = new ContentValues();
 
         String valor = txtAmount.getText().toString();
@@ -121,6 +126,7 @@ public class Purchase extends AppCompatActivity {
         String categoria = spCategory.getSelectedItem().toString();
         String lugar = spShop.getSelectedItem().toString();
         String descripcion = txtDescription.getText().toString();
+        int privat = cbPrivat.isChecked() ? 1 : 0;
 
         /*
         Atención: realmente lo de Date está deprecado y hay que usar no sé que de
@@ -145,6 +151,7 @@ public class Purchase extends AppCompatActivity {
         values.put("description", descripcion);
         values.put("date", fecha);
         values.put("exported", 0);
+        values.put("privat", privat);
 
         return values;
     }
