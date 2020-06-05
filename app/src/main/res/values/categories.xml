@@ -2,7 +2,6 @@
 <resources>
     <string-array name="categories_array">
         <item>Lebensmittel</item>
-        <item>Privat</item>
         <item>Elias</item>
         <item>Koerperpflege</item>
         <item>Putzen</item>
