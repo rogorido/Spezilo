@@ -41,13 +41,14 @@ public class MonthData {
         createDateStrings();
 
         mMonthAll = createCursorAll(imonth, iyear);
-        mMonthCommonExpenditures = createCursorCommon(imonth, iyear);
-        mMonthPrivate = createCursorPrivate(imonth, iyear);
+        // mMonthCommonExpenditures = createCursorCommon(imonth, iyear);
+        // mMonthPrivate = createCursorPrivate(imonth, iyear);
 
     }
 
     public Cursor createCursorAll(int month, int year) {
 
+        Cursor dataToExtract;
         imonth = month;
         iyear = year;
 
@@ -57,17 +58,19 @@ public class MonthData {
         db = dbh.getReadableDatabase();
 
         String sqlGeneral = "SELECT * from purchases " +
-                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                "WHERE date BETWEEN " + beginMonth + " AND " + endMonth +
                 " ORDER BY category, date";
 
-        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
+        dataToExtract = db.rawQuery(sqlGeneral, null);
+        Log.i("spezilo", "estamos en general");
 
-        return mMonthCommonExpenditures;
+        return dataToExtract;
 
     }
 
     public Cursor createCursorCommon(int month, int year) {
 
+        Cursor dataToExtract;
         imonth = month;
         iyear = year;
 
@@ -77,18 +80,20 @@ public class MonthData {
         db = dbh.getReadableDatabase();
 
         String sqlGeneral = "SELECT * from purchases " +
-                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
                 " AND privat = 0" +
                 " ORDER BY category, date";
 
-        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
+        dataToExtract = db.rawQuery(sqlGeneral, null);
+        Log.i("spezilo", "estamos en común");
 
-        return mMonthCommonExpenditures;
+        return dataToExtract;
 
     }
 
     public Cursor createCursorPrivate(int month, int year) {
 
+        Cursor dataToExtract;
         imonth = month;
         iyear = year;
 
@@ -98,13 +103,15 @@ public class MonthData {
         db = dbh.getReadableDatabase();
 
         String sqlGeneral = "SELECT * from purchases " +
-                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
                 " AND privat = 1 " +
                 " ORDER BY category, date";
 
-        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
+        Log.i("spezilo", sqlGeneral);
 
-        return mMonthCommonExpenditures;
+        dataToExtract = db.rawQuery(sqlGeneral, null);
+
+        return dataToExtract;
 
     }
 
@@ -236,7 +243,7 @@ public class MonthData {
                     new OutputStreamWriter(
                             new FileOutputStream(fileCommonExpenditures, false));
 
-            String finalText = createCSV(mMonthCommonExpenditures);
+            String finalText = createCSV(false);
 
             fout.write(finalText);
             fout.flush();
@@ -256,7 +263,7 @@ public class MonthData {
                     new OutputStreamWriter(
                             new FileOutputStream(filePrivateExpenditures, false));
 
-            String finalText = createCSV(mMonthPrivate);
+            String finalText = createCSV(true);
 
             fout.write(finalText);
             fout.flush();
@@ -265,7 +272,7 @@ public class MonthData {
             exportPrivate = true;
 
         } catch (IOException ioe) {
-            Log.i("spezilo", "hay un error en los gastos comunes.");
+            Log.i("spezilo", "hay un error en los gastos privados.");
 
             exportPrivate = false;
         }
@@ -277,9 +284,16 @@ public class MonthData {
         }
     }
 
-    private String createCSV(Cursor monthDataToExport){
+    private String createCSV(boolean privatorcommon){
         String textCSV = "";
         String notiz = "";
+        Cursor monthDataToExport;
+
+        if (privatorcommon) {
+            monthDataToExport = createCursorPrivate(imonth, iyear);
+        } else {
+            monthDataToExport = createCursorCommon(imonth, iyear);
+        }
 
         textCSV = "NW,ISM,Datum,Ort,Kategorie,Notiz" + "\n";
 
