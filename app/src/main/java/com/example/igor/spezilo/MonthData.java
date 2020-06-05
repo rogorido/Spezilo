@@ -24,6 +24,7 @@ public class MonthData {
     String endMonth;
     Calendar cal;
 
+    Cursor mMonthAll;
     Cursor mMonthCommonExpenditures;
     Cursor mMonthPrivate;
 
@@ -38,7 +39,9 @@ public class MonthData {
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
-        mMonthCommonExpenditures = createCursorAll(imonth, iyear);
+
+        mMonthAll = createCursorAll(imonth, iyear);
+        mMonthCommonExpenditures = createCursorCommon(imonth, iyear);
         mMonthPrivate = createCursorPrivate(imonth, iyear);
 
     }
@@ -55,6 +58,27 @@ public class MonthData {
 
         String sqlGeneral = "SELECT * from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " ORDER BY category, date";
+
+        mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
+
+        return mMonthCommonExpenditures;
+
+    }
+
+    public Cursor createCursorCommon(int month, int year) {
+
+        imonth = month;
+        iyear = year;
+
+        cal.set(iyear, imonth, 1);
+        createDateStrings();
+
+        db = dbh.getReadableDatabase();
+
+        String sqlGeneral = "SELECT * from purchases " +
+                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
+                " AND privat = 0" +
                 " ORDER BY category, date";
 
         mMonthCommonExpenditures = db.rawQuery(sqlGeneral, null);
@@ -85,7 +109,7 @@ public class MonthData {
     }
 
     public Cursor getMonthCursor(){
-        return mMonthCommonExpenditures;
+        return mMonthAll;
     }
 
     private void createDateStrings() {
@@ -191,21 +215,26 @@ public class MonthData {
     }
 
     public boolean exportData(){
+
+        boolean exportCommon, exportPrivate;
+
 //Creamos un fichero en la memoria interna
         //String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/documents";
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
         // no es el mes y año actual! sino el de la exportación!
-        String nameFile;
+        String nameFileCommonExpenditures;
+        String nameFilePrivateExpenditures;
 
         // hay que sumar uno al
-        nameFile = String.valueOf(iyear) + "-" + String.valueOf(imonth+1)+ ".csv";
+        nameFileCommonExpenditures = String.valueOf(iyear) + "-" + String.valueOf(imonth+1)+ "-common.csv";
+        nameFilePrivateExpenditures = String.valueOf(iyear) + "-" + String.valueOf(imonth+1)+ "-private.csv";
 
-        File fichero = new File(fullPath, nameFile);
+        File fileCommonExpenditures = new File(fullPath, nameFileCommonExpenditures);
         try {
             OutputStreamWriter fout =
                     new OutputStreamWriter(
-                            new FileOutputStream(fichero, false));
+                            new FileOutputStream(fileCommonExpenditures, false));
 
             String finalText = createCSV(mMonthCommonExpenditures);
 
@@ -213,12 +242,38 @@ public class MonthData {
             fout.flush();
             fout.close();
 
-            return true;
+            exportCommon = true;
 
         } catch (IOException ioe) {
-            Log.i("spezilo", "hay un error");
+            Log.i("spezilo", "hay un error en los gastos comunes.");
 
-            return false;
+            exportCommon = false;
+        }
+
+        File filePrivateExpenditures = new File(fullPath, nameFilePrivateExpenditures);
+        try {
+            OutputStreamWriter fout =
+                    new OutputStreamWriter(
+                            new FileOutputStream(filePrivateExpenditures, false));
+
+            String finalText = createCSV(mMonthPrivate);
+
+            fout.write(finalText);
+            fout.flush();
+            fout.close();
+
+            exportPrivate = true;
+
+        } catch (IOException ioe) {
+            Log.i("spezilo", "hay un error en los gastos comunes.");
+
+            exportPrivate = false;
+        }
+
+        if (exportCommon & exportPrivate ) {
+            return  true;
+        } else {
+            return  false;
         }
     }
 
