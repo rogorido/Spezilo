@@ -35,16 +35,8 @@ public class Settings extends AppCompatActivity {
         db = dbh.getWritableDatabase();
 
         if (db!=null) {
-
             Log.i("spezilo", "estamos aquí...");
-
             db.delete("purchases", null, null);
-
-                    /*
-            String sqlSentence = "DELETE FROM purchases";
-            db.execSQL(sqlSentence);
-            */
-
         }
 
         db.close();
