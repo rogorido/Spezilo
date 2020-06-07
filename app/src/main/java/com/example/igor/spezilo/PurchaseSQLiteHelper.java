@@ -31,9 +31,9 @@ public class PurchaseSQLiteHelper extends SQLiteOpenHelper {
         //      ser más elaborado.
 
         //Se elimina la versión anterior de la tabla
-        //db.execSQL("DROP TABLE IF EXISTS DBPurchases");
+        db.execSQL("DROP TABLE IF EXISTS DBPurchases");
 
         //Se crea la nueva versión de la tabla
-        //db.execSQL(sqlSentence);
+        db.execSQL(sqlSentence);
     }
 }
