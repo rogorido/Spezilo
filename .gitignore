@@ -8,5 +8,6 @@
 /*/build
 /captures
 /app/release/
-/app/
+/app/debug/
+/app/.settings/
 build/
