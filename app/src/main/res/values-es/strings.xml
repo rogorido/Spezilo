@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Spezilo</string>
+    <string name="no_gastos">No expenses</string>
+    <string name="action_delete_db">Borrar la db</string>
+    <string name="title_activity_purchase">Compra</string>
+    <string name="lblAmount">Cantidad: </string>
+    <string name="lblDescription">Descripción: </string>
+    <string name="person_paying">Persona</string>
+    <string name="place_shop">Tienda</string>
+    <string name="privat_cb">Privado</string>
+    <string name="category_purchase">Categoría</string>
+    <string name="month_spendings">Gastos por mes</string>
+    <string name="action_list_purchases">Ver datos</string>
+    <string name="action_export">Exportar</string>
+    <string name="action_seedata">Ver datos</string>
+</resources>

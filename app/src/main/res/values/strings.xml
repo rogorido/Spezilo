@@ -3,7 +3,7 @@
     <string name="no_gastos">No expenses</string>
     <string name="action_delete_db">Remove db</string>
     <string name="title_activity_purchase">Purchase</string>
-    <string name="lblAmount">Expenses: </string>
+    <string name="lblAmount">Amount: </string>
     <string name="lblDescription">Description: </string>
     <string name="person_paying">Person</string>
     <string name="place_shop">Shop</string>
