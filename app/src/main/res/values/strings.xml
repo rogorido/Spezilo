@@ -1,17 +1,16 @@
 <resources>
     <string name="app_name" translatable="false">Spezilo</string>
-    <string name="action_settings">Settings</string>
-    <string name="no_gastos">Keine Ausgaben</string>
-    <string name="action_delete_db">BD löschen</string>
-    <string name="title_activity_purchase">Einkauf</string>
-    <string name="lblAmount">Totalausgaben: </string>
-    <string name="lblDescription">Beschreibung: </string>
+    <string name="no_gastos">No expenses</string>
+    <string name="action_delete_db">Remove db</string>
+    <string name="title_activity_purchase">Purchase</string>
+    <string name="lblAmount">Expenses: </string>
+    <string name="lblDescription">Description: </string>
     <string name="person_paying">Person</string>
-    <string name="place_shop">Geschäft</string>
-    <string name="privat_cb">Privat</string>
-    <string name="category_purchase">Kategorie</string>
-    <string name="month_spendings">Monatliche Ausgaben: </string>
-    <string name="action_list_purchases">Daten einsehen</string>
-    <string name="action_export">Exportieren</string>
+    <string name="place_shop">Shop</string>
+    <string name="privat_cb">Private</string>
+    <string name="category_purchase">Category</string>
+    <string name="month_spendings">Spendings per month</string>
+    <string name="action_list_purchases">See data</string>
+    <string name="action_export">Export</string>
     <string name="action_seedata">See data</string>
 </resources>
