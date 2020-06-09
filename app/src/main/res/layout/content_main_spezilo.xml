@@ -45,23 +45,25 @@
         android:id="@+id/btnListPurchases"/>
 
     <TextView
+        android:id="@+id/lblMonthSpendings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/month_spendings"
-        android:id="@+id/lblMonthSpendings"
         android:layout_below="@+id/btnListPurchases"
         android:layout_alignParentRight="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" >
-    </TextView>
+        android:text="@string/month_spendings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#EA0B0B"></TextView>
 
     <TextView
+        android:id="@+id/lblCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Categorías"
-        android:id="@+id/lblCategories"
         android:layout_below="@+id/lblMonthSpendings"
-        android:layout_alignParentRight="true">
-    </TextView>
+        android:layout_alignParentRight="true"
+        android:foregroundTint="#EA0B0B"
+        android:text="Categorías"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#EA0B0B"></TextView>
 
     <ListView
 		android:id="@+id/lv_categories"
@@ -71,13 +73,15 @@
     </ListView>
 
     <TextView
+        android:id="@+id/lblTiendas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tiendas"
-        android:id="@+id/lblTiendas"
         android:layout_below="@+id/lv_categories"
-        android:layout_alignParentRight="true">
-    </TextView>
+        android:layout_alignParentRight="true"
+        android:foregroundTint="#EA0B0B"
+        android:text="Tiendas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#EA0B0B"></TextView>
 
     <ListView
         android:id="@+id/lv_shops"
