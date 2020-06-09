@@ -25,8 +25,6 @@ public class MonthData {
     Calendar cal;
 
     Cursor mMonthAll;
-    Cursor mMonthCommonExpenditures;
-    Cursor mMonthPrivate;
 
     public MonthData(int month, int year, Context context) {
         imonth = month;
@@ -41,8 +39,6 @@ public class MonthData {
         createDateStrings();
 
         mMonthAll = createCursorAll(imonth, iyear);
-        // mMonthCommonExpenditures = createCursorCommon(imonth, iyear);
-        // mMonthPrivate = createCursorPrivate(imonth, iyear);
 
     }
 
@@ -107,8 +103,6 @@ public class MonthData {
                 " AND privat = 1 " +
                 " ORDER BY category, date";
 
-        Log.i("spezilo", sqlGeneral);
-
         dataToExtract = db.rawQuery(sqlGeneral, null);
 
         return dataToExtract;
@@ -147,10 +141,6 @@ public class MonthData {
 
         beginMonth = "date('" + beginMonth + "')";
         endMonth = "date('" + endMonth + "')";
-
-        Log.i("fecha inicial:", beginMonth);
-        Log.i("fecha final: ", endMonth);
-
 
     }
 
