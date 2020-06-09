@@ -203,11 +203,8 @@ public class MainSpezilo extends AppCompatActivity {
     }
 
     private void fillGridCategories() {
-        Cursor ctotal;
-        Cursor stotal;
 
-        ctotal = datosmes.getCategoriesList();
-        stotal = datosmes.getShopsList();
+        Cursor ctotal = datosmes.getCategoriesList();
 
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
         lvCategories.setAdapter(adaptador);

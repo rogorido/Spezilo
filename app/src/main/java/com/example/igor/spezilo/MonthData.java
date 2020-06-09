@@ -170,22 +170,6 @@ public class MonthData {
 
     }
 
-    public Cursor getShopsList() {
-
-        Cursor cShops;
-        SQLiteDatabase db;
-
-        db = dbh.getReadableDatabase();
-
-        String sqlShops = "SELECT _id, place, round(sum(amount),2) as TOTAL from purchases " +
-                "WHERE date BETWEEN " + beginMonth + "AND " + endMonth +
-                " GROUP BY place ORDER BY TOTAL DESC";
-        cShops = db.rawQuery(sqlShops, null);
-
-        return cShops;
-
-    }
-
     public String getTotalMonthSpendings() {
         db = dbh.getReadableDatabase();
         String sqlTotal;
