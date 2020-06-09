@@ -28,27 +28,11 @@
         android:layout_alignParentRight="true"
         android:width="100dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_export"
-        android:layout_below="@+id/cmbMonths"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/btnExport"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_list_purchases"
-        android:layout_below="@+id/cmbYears"
-        android:layout_alignParentRight="true"
-        android:id="@+id/btnListPurchases"/>
-
     <TextView
         android:id="@+id/lblMonthSpendings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnListPurchases"
+        android:layout_below="@+id/cmbMonths"
         android:layout_alignParentRight="true"
         android:text="@string/month_spendings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

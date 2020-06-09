@@ -79,9 +79,6 @@ public class MainSpezilo extends AppCompatActivity {
 
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
-        btnListPurchases = (Button) findViewById(R.id.btnListPurchases);
-        btnExport = (Button) findViewById(R.id.btnExport);
-
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
         /*
@@ -149,29 +146,6 @@ public class MainSpezilo extends AppCompatActivity {
                 }
         );
 
-        btnListPurchases.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                listPurchases();
-            }
-        });
-
-        btnExport.setOnClickListener( new View.OnClickListener(){
-            public void onClick(View arg0){
-                boolean exporting;
-
-                exporting = datosmes.exportData();
-
-                if(exporting)
-                    Toast.makeText(getApplicationContext(), "Export war erfolgreich!",
-                            Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(getApplicationContext(), "Export scheiterte!",
-                            Toast.LENGTH_LONG).show();
-
-            }
-
-        });
-
     }
 
     private void mostrarDatos() {
@@ -202,8 +176,10 @@ public class MainSpezilo extends AppCompatActivity {
                 mostrarDatos();
                 return true;
             case R.id.action_seedata:
+                listPurchases();
                 return true;
             case R.id.action_export:
+                exportData();
                 return true;
             case R.id.action_delete_db:
                 Log.i("ActionBar", "Abrir activity!");
@@ -218,6 +194,20 @@ public class MainSpezilo extends AppCompatActivity {
         intent.putExtra("month", String.valueOf(month));
         intent.putExtra("year", String.valueOf(year));
         startActivity(intent);
+
+    }
+
+    private void exportData() {
+        boolean exporting;
+
+        exporting = datosmes.exportData();
+
+        if(exporting)
+            Toast.makeText(getApplicationContext(), "Export war erfolgreich!",
+                    Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(), "Export scheiterte!",
+                    Toast.LENGTH_LONG).show();
 
     }
 
@@ -240,5 +230,4 @@ public class MainSpezilo extends AppCompatActivity {
         yearspinner.setSelection(currentYear);
 
         }
-
 }
