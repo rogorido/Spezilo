@@ -176,12 +176,9 @@ public class MainSpezilo extends AppCompatActivity {
 
     private void mostrarDatos() {
 
-        String totalMes;
-
-        totalMes = datosmes.getTotalMonthSpendings();
-
+        String totalMes = datosmes.getTotalMonthSpendings();
         lblmonthSpendings.setText(totalMes);
-
+        
     }
 
     private void fillGridCategoriesANTIGUO() {
