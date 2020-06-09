@@ -199,9 +199,9 @@ public class MonthData {
         ctotal.moveToFirst();
         stTemp = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
         if (stTemp.equals("€null")) {
-            totalMonth += " ( 0€";
+            totalMonth += " ( €0";
         } else {
-            totalMonth += " ( " + stTemp + "€";
+            totalMonth += " ( " + stTemp;
         }
 
         // El total privado
@@ -214,7 +214,7 @@ public class MonthData {
         ctotal.moveToFirst();
         stTemp = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
         if (stTemp.equals("€null")) {
-            totalMonth += " + 0€ )";
+            totalMonth += " + €0 )";
         } else {
             totalMonth += " + " + stTemp + " )";
         }
