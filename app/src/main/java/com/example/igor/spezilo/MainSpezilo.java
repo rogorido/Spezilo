@@ -169,12 +169,6 @@ public class MainSpezilo extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                Log.i("ActionBar", "Abriendo Settings!");
-                Intent intent = new Intent(MainSpezilo.this, Settings.class);
-                startActivity(intent);
-                mostrarDatos();
-                return true;
             case R.id.action_seedata:
                 listPurchases();
                 return true;
@@ -183,6 +177,7 @@ public class MainSpezilo extends AppCompatActivity {
                 return true;
             case R.id.action_delete_db:
                 Log.i("ActionBar", "Abrir activity!");
+                deleteDB();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -209,6 +204,17 @@ public class MainSpezilo extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Export scheiterte!",
                     Toast.LENGTH_LONG).show();
 
+    }
+
+    private void deleteDB() {
+        db = dbh.getWritableDatabase();
+
+        if (db!=null) {
+            Log.i("spezilo", "estamos en borrar...");
+            db.delete("purchases", null, null);
+        }
+
+        db.close();
     }
 
     private void loadCurrentDate() {
