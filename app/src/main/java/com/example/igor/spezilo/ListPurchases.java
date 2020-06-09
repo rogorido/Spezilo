@@ -60,7 +60,6 @@ public class ListPurchases extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, final long idpurchase) {
 
-
                 new AlertDialog.Builder(ListPurchases.this)
                         .setMessage("¿Quieres realmente borrar esta entrada?")
                         .setCancelable(false)

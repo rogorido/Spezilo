@@ -1,5 +1,7 @@
 package com.example.igor.spezilo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -106,7 +108,7 @@ public class MainSpezilo extends AppCompatActivity {
     {  // After a pause OR at startup
         super.onResume();
         fillGridCategories();
-        mostrarDatos();
+        showData();
 
     }
 
@@ -120,7 +122,7 @@ public class MainSpezilo extends AppCompatActivity {
                         Log.i("Escogido: ", MonthSelected);
                         datosmes.createCursorAll(month, year);
                         fillGridCategories();
-                        mostrarDatos();
+                        showData();
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -137,7 +139,7 @@ public class MainSpezilo extends AppCompatActivity {
                         Log.i("Año escogido: ", YearSelected);
                         datosmes.createCursorAll(month, year);
                         fillGridCategories();
-                        mostrarDatos();
+                        showData();
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -148,7 +150,7 @@ public class MainSpezilo extends AppCompatActivity {
 
     }
 
-    private void mostrarDatos() {
+    private void showData() {
 
         String totalMes = datosmes.getTotalMonthSpendings();
         lblmonthSpendings.setText(totalMes);
@@ -209,12 +211,23 @@ public class MainSpezilo extends AppCompatActivity {
     private void deleteDB() {
         db = dbh.getWritableDatabase();
 
-        if (db!=null) {
-            Log.i("spezilo", "estamos en borrar...");
-            db.delete("purchases", null, null);
-        }
+        new AlertDialog.Builder(MainSpezilo.this)
+                .setMessage("¿Quieres realmente borrar la base de datos?")
+                .setCancelable(false)
+                .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Log.w("Spezilo", "borrando db");
+                        if (db!=null) {
+                            Log.i("spezilo", "estamos en borrar...");
+                            db.delete("purchases", null, null);
+                            showData();
+                            fillGridCategories();
+                        }
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
 
-        db.close();
     }
 
     private void loadCurrentDate() {
