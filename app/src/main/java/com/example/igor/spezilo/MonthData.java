@@ -172,13 +172,11 @@ public class MonthData {
 
     public String getTotalMonthSpendings() {
         db = dbh.getReadableDatabase();
-        String sqlTotal;
+        String sqlTotal, stTemp;
         String totalMonth;
         Cursor ctotal;
 
-        /*
-           Primero el total-total
-         */
+        // Primero el total-total
         sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth;
 
@@ -186,6 +184,10 @@ public class MonthData {
 
         ctotal.moveToFirst();
         totalMonth = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+
+        if (totalMonth.equals("€null")) {
+            totalMonth = "€ 0";
+        }
 
         // El total-common
         sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
@@ -195,7 +197,12 @@ public class MonthData {
         ctotal = db.rawQuery(sqlTotal, null);
 
         ctotal.moveToFirst();
-        totalMonth += "(" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+        stTemp = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+        if (stTemp.equals("€null")) {
+            totalMonth += " ( 0€";
+        } else {
+            totalMonth += " ( " + stTemp + "€";
+        }
 
         // El total privado
         sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
@@ -205,13 +212,12 @@ public class MonthData {
         ctotal = db.rawQuery(sqlTotal, null);
 
         ctotal.moveToFirst();
-        totalMonth += " + " + ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " )";
-
-        // esto no funciona.. no sé por qué...
-        /*if (totalMonth == "null €") {
-            Log.i("totalgastos", totalMonth);
-            totalMonth = "0 €";
-        }*/
+        stTemp = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+        if (stTemp.equals("€null")) {
+            totalMonth += " + 0€ )";
+        } else {
+            totalMonth += " + " + stTemp + " )";
+        }
 
         return totalMonth;
     }
