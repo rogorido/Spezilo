@@ -100,11 +100,11 @@
                 android:id="@+id/cbPrivat"/>
 
             <DatePicker
+                android:id="@+id/dtDatePicker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/dtDatePicker"
                 android:calendarViewShown="false"
-                android:datePickerMode="spinner"/>
+                android:datePickerMode="calendar" />
 
         </LinearLayout>
     </ScrollView>

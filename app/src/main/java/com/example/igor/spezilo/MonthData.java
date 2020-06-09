@@ -231,8 +231,6 @@ public class MonthData {
 
         boolean exportCommon, exportPrivate;
 
-//Creamos un fichero en la memoria interna
-        //String fullPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/documents";
         File fullPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
         // no es el mes y año actual! sino el de la exportación!
