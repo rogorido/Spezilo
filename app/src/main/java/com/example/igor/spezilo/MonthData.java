@@ -200,6 +200,7 @@ public class MonthData {
 
         // esto no funciona.. no sé por qué...
         if (totalMonth == "null €") {
+            Log.i("totalgastos", totalMonth);
             totalMonth = "0 €";
         }
 

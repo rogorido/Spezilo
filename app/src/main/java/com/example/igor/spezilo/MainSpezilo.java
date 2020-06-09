@@ -76,7 +76,6 @@ public class MainSpezilo extends AppCompatActivity {
         yearspinner.setAdapter(adapteryears);
 
         lvCategories = (ListView) findViewById(R.id.lv_categories);
-        lvShops = (ListView) findViewById(R.id.lv_shops);
 
         lblmonthSpendings = (TextView) findViewById(R.id.lblMonthSpendings);
 
@@ -194,14 +193,9 @@ public class MainSpezilo extends AppCompatActivity {
 
         String sqlCategories = "SELECT _id, category, round(sum(amount),2) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
         Cursor ctotal = db.rawQuery(sqlCategories, null);
-        String sqlShops = "SELECT _id, place, round(sum(amount),2) as TOTAL from purchases GROUP BY place ORDER BY TOTAL DESC";
-        Cursor shopstotal = db.rawQuery(sqlShops, null);
 
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
         lvCategories.setAdapter(adaptador);
-
-        ShopsAdapter shopsadaptador = new ShopsAdapter(this, shopstotal);
-        lvShops.setAdapter(shopsadaptador);
 
         /*
         si cierro estos, se me crashea la aplicación...
@@ -221,9 +215,6 @@ public class MainSpezilo extends AppCompatActivity {
 
         CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
         lvCategories.setAdapter(adaptador);
-
-        ShopsAdapter shopsadaptador = new ShopsAdapter(this, stotal);
-        lvShops.setAdapter(shopsadaptador);
 
     }
 
