@@ -188,21 +188,46 @@ public class MonthData {
 
     public String getTotalMonthSpendings() {
         db = dbh.getReadableDatabase();
+        String sqlTotal;
         String totalMonth;
+        Cursor ctotal;
 
-        String sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
+        /*
+           Primero el total-total
+         */
+        sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
                 "WHERE date BETWEEN " + beginMonth + "AND " + endMonth;
 
-        Cursor ctotal = db.rawQuery(sqlTotal, null);
+        ctotal = db.rawQuery(sqlTotal, null);
 
         ctotal.moveToFirst();
-        totalMonth = ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " €";
+        totalMonth = "€" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+
+        // El total-common
+        sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
+                "WHERE (date BETWEEN " + beginMonth + "AND " + endMonth + ") " +
+                "AND privat=0";
+
+        ctotal = db.rawQuery(sqlTotal, null);
+
+        ctotal.moveToFirst();
+        totalMonth += "(" + ctotal.getString(ctotal.getColumnIndex("TOTAL"));
+
+        // El total privado
+        sqlTotal = "SELECT round(sum(amount),2) as TOTAL from purchases " +
+                "WHERE (date BETWEEN " + beginMonth + "AND " + endMonth + ") " +
+                "AND privat=1";
+
+        ctotal = db.rawQuery(sqlTotal, null);
+
+        ctotal.moveToFirst();
+        totalMonth += " + " + ctotal.getString(ctotal.getColumnIndex("TOTAL")) + " )";
 
         // esto no funciona.. no sé por qué...
-        if (totalMonth == "null €") {
+        /*if (totalMonth == "null €") {
             Log.i("totalgastos", totalMonth);
             totalMonth = "0 €";
-        }
+        }*/
 
         return totalMonth;
     }

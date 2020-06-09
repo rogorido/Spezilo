@@ -179,7 +179,6 @@ public class MainSpezilo extends AppCompatActivity {
         String totalMes;
 
         totalMes = datosmes.getTotalMonthSpendings();
-        totalMes = "Total/mes: " + totalMes;
 
         lblmonthSpendings.setText(totalMes);
 
