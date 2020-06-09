@@ -181,27 +181,6 @@ public class MainSpezilo extends AppCompatActivity {
 
     }
 
-    private void fillGridCategoriesANTIGUO() {
-        /*
-        esto es antiguo; ahora uso la clase MonthData
-         */
-        db = dbh.getWritableDatabase();
-
-        String sqlCategories = "SELECT _id, category, round(sum(amount),2) as TOTAL from purchases GROUP BY category ORDER BY TOTAL DESC";
-        Cursor ctotal = db.rawQuery(sqlCategories, null);
-
-        CategoriesAdapter adaptador = new CategoriesAdapter(this, ctotal);
-        lvCategories.setAdapter(adaptador);
-
-        /*
-        si cierro estos, se me crashea la aplicación...
-        ctotal.close();
-
-        db.close();
-         */
-
-    }
-
     private void fillGridCategories() {
 
         Cursor ctotal = datosmes.getCategoriesList();
@@ -211,9 +190,7 @@ public class MainSpezilo extends AppCompatActivity {
 
     }
 
-    private void updateCursorMonth() {
-
-    }
+    private void updateCursorMonth() {  }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
