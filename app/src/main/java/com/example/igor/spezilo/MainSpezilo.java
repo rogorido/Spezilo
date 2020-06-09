@@ -201,6 +201,10 @@ public class MainSpezilo extends AppCompatActivity {
                 startActivity(intent);
                 mostrarDatos();
                 return true;
+            case R.id.action_seedata:
+                return true;
+            case R.id.action_export:
+                return true;
             case R.id.action_delete_db:
                 Log.i("ActionBar", "Abrir activity!");
                 return true;

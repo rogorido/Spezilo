@@ -13,5 +13,5 @@
     <string name="month_spendings">Monatliche Ausgaben: </string>
     <string name="action_list_purchases">Daten einsehen</string>
     <string name="action_export">Exportieren</string>
-
+    <string name="action_seedata">See data</string>
 </resources>
