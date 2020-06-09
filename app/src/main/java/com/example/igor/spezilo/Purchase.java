@@ -1,11 +1,9 @@
 package com.example.igor.spezilo;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.CheckBox;
@@ -96,28 +94,27 @@ public class Purchase extends AppCompatActivity {
 
     private void savePurchase() {
 
-        /*
-            habría q comprobar si txtAmount está vacio
-            pero increíblemente no lo consigo...
-         */
+        // esto no parece funcionar dle todo bien...
+        if (TextUtils.isEmpty(txtAmount.getText().toString())) return;
+
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
         db = dbh.getWritableDatabase();
 
         long rowInserted = db.insert(
                 "purchases",
                 null,
-                datosValues());
+                dataValues());
 
         if(rowInserted != -1)
             Toast.makeText(getApplicationContext(), "Añadida nueva compra",
                     Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(getApplicationContext(), "Something wrong",
+            Toast.makeText(getApplicationContext(), "Ha habido un error",
                     Toast.LENGTH_SHORT).show();
 
     }
 
-    public ContentValues datosValues ()    {
+    public ContentValues dataValues()    {
 
         ContentValues values = new ContentValues();
 
