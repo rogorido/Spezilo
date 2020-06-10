@@ -34,7 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cmbMonths"
         android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
         android:text="@string/month_spendings"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#EA0B0B"></TextView>
 
@@ -42,6 +44,8 @@
         android:id="@+id/lv_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lblMonthSpendings"></ListView>
+        android:layout_below="@id/lblMonthSpendings">
+
+    </ListView>
 
 </RelativeLayout>
