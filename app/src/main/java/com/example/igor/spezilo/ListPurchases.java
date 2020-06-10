@@ -33,7 +33,7 @@ public class ListPurchases extends AppCompatActivity {
         year = Integer.valueOf(getIntent().getExtras().getString("year"));
 
         datosmes = new MonthData(month, year, this);
-        cMonth = datosmes.getMonthCursor();
+        cMonth = datosmes.createCursorGeneral(month, year, MonthData.CursorTypeToShow.PURCHASES);
 
         dbh = new PurchaseSQLiteHelper(this, "DBPurchases", null, 2);
 
@@ -67,7 +67,7 @@ public class ListPurchases extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 Log.w("Spezilo", "borrando");
                                 datosmes.deleteItem(idpurchase);
-                                cMonth = datosmes.createCursorAll(month, year);
+                                cMonth = datosmes.createCursorGeneral(month, year, MonthData.CursorTypeToShow.PURCHASES);
                                 adaptador.changeCursor(cMonth);
                             }
                         })

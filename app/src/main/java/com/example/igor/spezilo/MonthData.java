@@ -24,27 +24,27 @@ public class MonthData {
     String endMonth;
     Calendar cal;
 
-    Cursor mMonthAll;
+    public enum CursorTypeToShow {
+        ALLDATA, PRIVATEDATA, COMMONDATA, PURCHASES
+    }
 
     public MonthData(int month, int year, Context context) {
         imonth = month;
         iyear = year;
 
         cal = Calendar.getInstance();
-
         cal.set(year, month, 1);
 
         dbh = new PurchaseSQLiteHelper(context, "DBPurchases", null, 2);
 
         createDateStrings();
 
-        mMonthAll = createCursorAll(imonth, iyear);
-
     }
 
-    public Cursor createCursorAll(int month, int year) {
+    public Cursor createCursorGeneral(int month, int year, CursorTypeToShow cursortype) {
 
         Cursor dataToExtract;
+        String sqlGeneral;
         imonth = month;
         iyear = year;
 
@@ -53,64 +53,54 @@ public class MonthData {
 
         db = dbh.getReadableDatabase();
 
-        String sqlGeneral = "SELECT * from purchases " +
+        // pongo esto aquí porque si no me da error dee que no está inicializado...
+        sqlGeneral = "SELECT * from purchases " +
                 "WHERE date BETWEEN " + beginMonth + " AND " + endMonth +
                 " ORDER BY category, date";
-
         dataToExtract = db.rawQuery(sqlGeneral, null);
-        Log.i("spezilo", "estamos en general");
+
+        switch (cursortype) {
+            case ALLDATA:
+                sqlGeneral = "SELECT * from purchases " +
+                             "WHERE date BETWEEN " + beginMonth + " AND " + endMonth +
+                             " ORDER BY category, date";
+                dataToExtract = db.rawQuery(sqlGeneral, null);
+                Log.i("spezilo", "estamos en general");
+                break;
+
+            case COMMONDATA:
+                sqlGeneral = "SELECT * from purchases " +
+                             "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
+                             " AND privat = 0 ORDER BY category, date";
+                dataToExtract = db.rawQuery(sqlGeneral, null);
+                break;
+
+            case PRIVATEDATA:
+                sqlGeneral = "SELECT * from purchases " +
+                             "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
+                             " AND privat = 1 ORDER BY category, date";
+                dataToExtract = db.rawQuery(sqlGeneral, null);
+                break;
+
+            case PURCHASES:
+                sqlGeneral = "SELECT * from purchases " +
+                             "WHERE date BETWEEN " + beginMonth + " AND " + endMonth +
+                             " ORDER BY date DESC";
+                dataToExtract = db.rawQuery(sqlGeneral, null);
+                Log.i("spezilo", "estamos en purchases");
+                break;
+
+            default: // in case... the most general one
+                sqlGeneral = "SELECT * from purchases " +
+                        "WHERE date BETWEEN " + beginMonth + " AND " + endMonth +
+                        " ORDER BY category, date";
+                dataToExtract = db.rawQuery(sqlGeneral, null);
+                break;
+
+        }
 
         return dataToExtract;
 
-    }
-
-    public Cursor createCursorCommon(int month, int year) {
-
-        Cursor dataToExtract;
-        imonth = month;
-        iyear = year;
-
-        cal.set(iyear, imonth, 1);
-        createDateStrings();
-
-        db = dbh.getReadableDatabase();
-
-        String sqlGeneral = "SELECT * from purchases " +
-                "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
-                " AND privat = 0" +
-                " ORDER BY category, date";
-
-        dataToExtract = db.rawQuery(sqlGeneral, null);
-        Log.i("spezilo", "estamos en común");
-
-        return dataToExtract;
-
-    }
-
-    public Cursor createCursorPrivate(int month, int year) {
-
-        Cursor dataToExtract;
-        imonth = month;
-        iyear = year;
-
-        cal.set(iyear, imonth, 1);
-        createDateStrings();
-
-        db = dbh.getReadableDatabase();
-
-        String sqlGeneral = "SELECT * from purchases " +
-                "WHERE (date BETWEEN " + beginMonth + " AND " + endMonth + ") " +
-                " AND privat = 1 " +
-                " ORDER BY category, date";
-
-        dataToExtract = db.rawQuery(sqlGeneral, null);
-
-        return dataToExtract;
-
-    }
-
-    public Cursor getMonthCursor(){
-        return mMonthAll;
     }
 
     private void createDateStrings() {
@@ -294,9 +284,9 @@ public class MonthData {
         Cursor monthDataToExport;
 
         if (privatorcommon) {
-            monthDataToExport = createCursorPrivate(imonth, iyear);
+            monthDataToExport = createCursorGeneral(imonth, iyear, CursorTypeToShow.PRIVATEDATA);
         } else {
-            monthDataToExport = createCursorCommon(imonth, iyear);
+            monthDataToExport = createCursorGeneral(imonth, iyear, CursorTypeToShow.COMMONDATA);
         }
 
         textCSV = "NW,ISM,Datum,Ort,Kategorie,Notiz" + "\n";

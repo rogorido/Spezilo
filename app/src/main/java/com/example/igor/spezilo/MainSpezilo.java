@@ -120,7 +120,7 @@ public class MainSpezilo extends AppCompatActivity {
                         MonthSelected = String.valueOf(pos+1);
                         month = pos;
                         Log.i("Escogido: ", MonthSelected);
-                        datosmes.createCursorAll(month, year);
+                        datosmes.createCursorGeneral(month, year, MonthData.CursorTypeToShow.ALLDATA);
                         fillGridCategories();
                         showData();
                     }
@@ -137,7 +137,7 @@ public class MainSpezilo extends AppCompatActivity {
                         YearSelected = parent.getItemAtPosition(pos).toString();
                         year = Integer.valueOf(YearSelected);
                         Log.i("Año escogido: ", YearSelected);
-                        datosmes.createCursorAll(month, year);
+                        datosmes.createCursorGeneral(month, year, MonthData.CursorTypeToShow.ALLDATA);
                         fillGridCategories();
                         showData();
                     }
