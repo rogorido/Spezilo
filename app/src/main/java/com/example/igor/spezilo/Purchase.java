@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.CheckBox;
+import android.widget.Switch;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +36,7 @@ public class Purchase extends AppCompatActivity {
     DatePicker datePicker;
     EditText txtAmount;
     TextView txtDescription;
-    CheckBox cbPrivat;
+    Switch cbPrivat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class Purchase extends AppCompatActivity {
         shopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spShop.setAdapter(shopAdapter);
 
-        cbPrivat = (CheckBox) findViewById(R.id.cbPrivat);
+        cbPrivat = (Switch) findViewById(R.id.cbPrivat);
 
         datePicker = (DatePicker) findViewById(R.id.dtDatePicker);
     }
