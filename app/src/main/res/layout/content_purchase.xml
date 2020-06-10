@@ -99,10 +99,12 @@
 
             <DatePicker
                 android:id="@+id/dtDatePicker"
+                style="@android:style/Widget.Material.Light.DatePicker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:calendarViewShown="false"
-                android:datePickerMode="calendar" />
+                android:datePickerMode="calendar"
+                android:headerBackground="#EA0B0B" />
 
         </LinearLayout>
     </ScrollView>
