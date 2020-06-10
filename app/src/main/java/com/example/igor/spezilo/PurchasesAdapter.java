@@ -49,7 +49,7 @@ public class PurchasesAdapter extends CursorAdapter {
             privatLabel = "Gemeinsam";
         }
 
-        // Populate fields with extracted properties
+        // Populate fields with extracted propertiesll
         tvDate.setText(date);
         tvAmount.setText(String.valueOf(amount));
         tvCategory.setText(category);
