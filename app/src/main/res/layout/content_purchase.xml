@@ -45,6 +45,48 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/lblPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/person_paying" />
+
+            <Spinner
+                android:id="@+id/cboPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblCategory"
+                android:text="@string/category_purchase"/>
+
+            <Spinner
+                android:id="@+id/cboCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblPlace"
+                android:text="@string/place_shop"/>
+
+            <Spinner
+                android:id="@+id/cboShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog" />
+
+            <Switch
+                android:id="@+id/cbPrivat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privat_cb" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/lblDescription"
@@ -54,45 +96,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/txtDescription"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lblPerson"
-                android:text="@string/person_paying"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/cboPerson"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lblCategory"
-                android:text="@string/category_purchase"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/cboCategory"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/lblPlace"
-                android:text="@string/place_shop"/>
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/cboShop"/>
-
-            <Switch
-                android:id="@+id/cbPrivat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/privat_cb" />
 
             <DatePicker
                 android:id="@+id/dtDatePicker"
