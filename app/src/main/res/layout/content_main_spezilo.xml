@@ -15,18 +15,20 @@
     tools:showIn="@layout/activity_main_spezilo">
 
     <Spinner
+        android:id="@+id/cmbMonths"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cmbMonths"
         android:layout_alignParentLeft="true"
-        android:width="90dp"/>
+        android:width="90dp"
+        android:spinnerMode="dialog" />
 
     <Spinner
+        android:id="@+id/cmbYears"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cmbYears"
         android:layout_alignParentRight="true"
-        android:width="100dp"/>
+        android:width="100dp"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:id="@+id/lblMonthSpendings"
