@@ -11,3 +11,7 @@
 /app/debug/
 /app/.settings/
 build/
+
+# esto me lo crea emacs a veces
+.project
+.settings/
