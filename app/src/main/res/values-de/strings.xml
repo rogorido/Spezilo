@@ -3,6 +3,7 @@
     <string name="no_gastos">Keine Ausgaben</string>
     <string name="action_delete_db">DB löschen</string>
     <string name="title_activity_purchase">Einkauf</string>
+    <string name="title_activity_listpurchases">Liste der Ausgaben</string>
     <string name="lblAmount">Totalausgaben: </string>
     <string name="lblDescription">Beschreibung: </string>
     <string name="person_paying">Person</string>

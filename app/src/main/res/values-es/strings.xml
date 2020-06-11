@@ -4,6 +4,7 @@
     <string name="no_gastos">No expenses</string>
     <string name="action_delete_db">Borrar la db</string>
     <string name="title_activity_purchase">Compra</string>
+    <string name="title_activity_listpurchases">Lista de gastos</string>
     <string name="lblAmount">Cantidad: </string>
     <string name="lblDescription">Descripción: </string>
     <string name="person_paying">Persona</string>

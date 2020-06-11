@@ -17,7 +17,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,7 +29,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.igor.spezilo.MainSpezilo" />
         </activity>
-        <activity android:name=".ListPurchases"></activity>
+        <activity
+            android:name=".ListPurchases"
+            android:label="@string/title_activity_listpurchases"
+            android:parentActivityName=".MainSpezilo"
+            ></activity>
     </application>
 
 </manifest>

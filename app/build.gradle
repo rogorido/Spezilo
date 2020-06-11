@@ -7,9 +7,10 @@ android {
         applicationId "com.example.igor.spezilo"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 22
+        versionCode 23
         versionName "1.5"
     }
+
     buildTypes {
         release {
             minifyEnabled false
