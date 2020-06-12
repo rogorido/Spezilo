@@ -7,7 +7,7 @@ android {
         applicationId "com.example.igor.spezilo"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 23
+        versionCode 24
         versionName "1.5"
     }
 

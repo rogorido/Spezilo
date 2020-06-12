@@ -2,6 +2,7 @@ package com.example.igor.spezilo;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,21 @@ public class PurchasesAdapter extends CursorAdapter {
         tvPlace.setText(place);
         tvDescription.setText(description);
         tvPrivate.setText(privatLabel);
+
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        final View row = super.getView(position, convertView, parent);
+
+        TextView privateLabel = (TextView) row.findViewById(R.id.tvPrivatePurchase);
+        String privateValue = privateLabel.getText().toString();
+
+        if (privateValue.equals("Privat"))
+            row.setBackgroundColor(Color.parseColor("#FFF8F8"));
+
+        return row;
 
     }
 }
